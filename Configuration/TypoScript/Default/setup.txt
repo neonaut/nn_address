@@ -13,9 +13,18 @@
 #
 plugin.tx_nnaddress {
 	view {
-		templateRootPath = {$plugin.tx_nnaddress.view.templateRootPath}
-		partialRootPath = {$plugin.tx_nnaddress.view.partialRootPath}
-		layoutRootPath = {$plugin.tx_nnaddress.view.layoutRootPath}
+		templateRootPaths {
+			0 = EXT:nn_address/Resources/Private/Templates/
+			1 = {$plugin.tx_nnaddress.view.templateRootPath}
+		}
+		partialRootPaths {
+			0 = EXT:nn_address/Resources/Private/Partials/
+			1 = {$plugin.tx_nnaddress.view.partialRootPath}
+		}
+		layoutRootPaths {
+			0 = EXT:nn_address/Resources/Private/Layouts/
+			1 = {$plugin.tx_nnaddress.view.layoutRootPath}
+		}
 	}
 	persistence {
 		storagePid = {$plugin.tx_nnaddress.persistence.storagePid}

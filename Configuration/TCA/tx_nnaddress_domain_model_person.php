@@ -3,13 +3,42 @@ if (!defined ('TYPO3_MODE')) {
 	die ('Access denied.');
 }
 
-$TCA['tx_nnaddress_domain_model_person'] = array(
-	'ctrl' => $TCA['tx_nnaddress_domain_model_person']['ctrl'],
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+
+return array(
+
+	'ctrl' => array(
+		'title'	=> 'LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person',
+		'label' => 'last_name',
+		'label_alt' => 'first_name,organisation',
+		'label_alt_force' => 1,
+		'tstamp' => 'tstamp',
+		'crdate' => 'crdate',
+		'cruser_id' => 'cruser_id',
+		'dividers2tabs' => TRUE,
+
+		'versioningWS' => 2,
+		'versioning_followPages' => TRUE,
+		'origUid' => 't3_origuid',
+		'languageField' => 'sys_language_uid',
+		'transOrigPointerField' => 'l10n_parent',
+		'transOrigDiffSourceField' => 'l10n_diffsource',
+		'delete' => 'deleted',
+		'enablecolumns' => array(
+			'disabled' => 'hidden',
+			'starttime' => 'starttime',
+			'endtime' => 'endtime',
+		),
+		'searchFields' => 'gender,title,first_name,second_first_name,last_name,organisation,position,birthday,image,street,number,zip,city,phone,fax,email,website,notes,addresses,phones,mails,groups,categories,',
+		// 'dynamicConfigFile' => 'EXT:nn_address/Configuration/TCA/Person.php',
+		'iconfile' => 'EXT:nn_address/Resources/Public/Icons/tx_nnaddress_domain_model_person.gif'
+	),
+
 	'interface' => array(
-		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, gender, title, first_name, second_first_name, last_name, organisation, birthday, image, website, notes, addresses, phones, mails, groups, categories, flexform',
+		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, gender, title, first_name, second_first_name, last_name, organisation, position, image, fal_image, street, number, zip, city, phone, fax, email, website, notes, addresses, phones, mails, groups, categories, flexform',
 	),
 	'types' => array(
-		'1' => array('showitem' => 'l10n_parent, l10n_diffsource, hidden;;1, gender, title, first_name, second_first_name, last_name, organisation, birthday, image, website, notes, 
+		'1' => array('showitem' => 'l10n_parent, l10n_diffsource, hidden;;1, gender, title, first_name, second_first_name, last_name, organisation, position, birthday, fal_image, website, notes,
 									--div--;LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person.addresses, addresses, 
 									--div--;LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person.phones, phones,
 									--div--;LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person.mails, mails, 
@@ -24,15 +53,19 @@ $TCA['tx_nnaddress_domain_model_person'] = array(
 		'sys_language_uid' => array(
 			'exclude' => 1,
 			'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.language',
-			'config' => array(
+			'config' => [
 				'type' => 'select',
-				'foreign_table' => 'sys_language',
-				'foreign_table_where' => 'ORDER BY sys_language.title',
-				'items' => array(
-					array('LLL:EXT:lang/locallang_general.xlf:LGL.allLanguages', -1),
-					array('LLL:EXT:lang/locallang_general.xlf:LGL.default_value', 0)
-				),
-			),
+				'renderType' => 'selectSingle',
+				'special' => 'languages',
+				'items' => [
+					[
+						'LLL:EXT:lang/locallang_general.xlf:LGL.allLanguages',
+						-1,
+						'flags-multiple'
+					],
+				],
+				'default' => 0,
+			]
 		),
 		'l10n_parent' => array(
 			'displayCond' => 'FIELD:sys_language_uid:>:0',
@@ -40,6 +73,7 @@ $TCA['tx_nnaddress_domain_model_person'] = array(
 			'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.l18n_parent',
 			'config' => array(
 				'type' => 'select',
+				'renderType' => 'selectSingle',
 				'items' => array(
 					array('', 0),
 				),
@@ -104,13 +138,14 @@ $TCA['tx_nnaddress_domain_model_person'] = array(
 			'label' => 'LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person.gender',
 			'config' => array(
 				'type' => 'select',
+				'renderType' => 'selectSingle',
 				'items' => array(
 					array('LLL:EXT:nn_address/Resources/Private/Language/locallang_csh_tx_nnaddress_domain_model_person.xlf:gender.0', 0),
 					array('LLL:EXT:nn_address/Resources/Private/Language/locallang_csh_tx_nnaddress_domain_model_person.xlf:gender.1', 1),
 				),
 				'size' => 1,
 				'maxitems' => 1,
-				'eval' => ''
+				'eval' => '',
 			),
 		),
 		'title' => array(
@@ -158,6 +193,15 @@ $TCA['tx_nnaddress_domain_model_person'] = array(
 				'eval' => 'trim'
 			),
 		),
+		'position' => array(
+			'exclude' => 1,
+			'label' => 'LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person.position',
+			'config' => array(
+				'type' => 'input',
+				'size' => 30,
+				'eval' => 'trim'
+			),
+		),
 		'birthday' => array(
 			'exclude' => 1,
 			'label' => 'LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person.birthday',
@@ -181,6 +225,76 @@ $TCA['tx_nnaddress_domain_model_person'] = array(
 				'maxitems' => 5,
 				'allowed' => $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext'],
 				'disallowed' => '',
+			),
+		),
+		'fal_image' => array (
+			'exclude' => 1,
+			'label' => 'LLL:EXT:lang/locallang_general.xml:LGL.image',
+			'config' => ExtensionManagementUtility::getFileFieldTCAConfig('image', array(
+				'maxitems'	=> 5,
+			),$GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext'])
+		),
+		'street' => array(
+			'exclude' => 1,
+			'label' => 'LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person.street',
+			'config' => array(
+				'type' => 'input',
+				'size' => 30,
+				'eval' => 'trim'
+			),
+		),
+		'number' => array(
+			'exclude' => 1,
+			'label' => 'LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person.number',
+			'config' => array(
+				'type' => 'input',
+				'size' => 7,
+				'eval' => 'trim'
+			),
+		),
+		'zip' => array(
+			'exclude' => 1,
+			'label' => 'LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person.zip',
+			'config' => array(
+				'type' => 'input',
+				'size' => 7,
+				'eval' => 'trim'
+			),
+		),
+		'city' => array(
+			'exclude' => 1,
+			'label' => 'LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person.city',
+			'config' => array(
+				'type' => 'input',
+				'size' => 30,
+				'eval' => 'trim'
+			),
+		),
+		'phone' => array(
+			'exclude' => 1,
+			'label' => 'LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person.phone',
+			'config' => array(
+				'type' => 'input',
+				'size' => 30,
+				'eval' => 'trim'
+			),
+		),
+		'fax' => array(
+			'exclude' => 1,
+			'label' => 'LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person.fax',
+			'config' => array(
+				'type' => 'input',
+				'size' => 30,
+				'eval' => 'trim'
+			),
+		),
+		'email' => array(
+			'exclude' => 1,
+			'label' => 'LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person.email',
+			'config' => array(
+				'type' => 'input',
+				'size' => 30,
+				'eval' => 'trim'
 			),
 		),
 		'website' => array(
@@ -264,6 +378,7 @@ $TCA['tx_nnaddress_domain_model_person'] = array(
 			'label' => 'LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person.groups',
 			'config' => array(
 				'type' => 'select',
+				'renderType' => 'selectSingle',
 				'foreign_table' => 'tx_nnaddress_domain_model_group',
 				'foreign_table_where' => ' AND (((\'###PAGE_TSCONFIG_IDLIST###\' <> \'\' OR \'###PAGE_TSCONFIG_IDLIST###\' > 0) AND FIND_IN_SET(tx_nnaddress_domain_model_group.pid,\'###PAGE_TSCONFIG_IDLIST###\')) OR (\'###PAGE_TSCONFIG_IDLIST###\' = \'\' OR \'###PAGE_TSCONFIG_IDLIST###\' = 0)) AND tx_nnaddress_domain_model_group.sys_language_uid=###REC_FIELD_sys_language_uid### ORDER BY tx_nnaddress_domain_model_group.title ',
 				'MM' => 'tx_nnaddress_person_group_mm',
@@ -280,14 +395,28 @@ $TCA['tx_nnaddress_domain_model_person'] = array(
 				'type' => 'flex',
 				'ds_pointerField' => 'uid',
 				'ds' => array(
-					'default' => ''
+					'default' => 'FILE:EXT:nn_address/Configuration/FlexForms/Model/Person.xml',
 				),
 			),
 		)
 	),
 );
 
-// Add Flexform if in extManager Conf is set or remove the sheet
-\NN\NnAddress\Utility\Flexform::modifyFlexSheet($TCA, 'person');
+/* 
+// Extension manager configuration
+$_extConfig = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['nn_address']);
 
-?>
+if ( $_extConfig['useFal'] == 0 ) {
+	$TCA['tx_nnaddress_domain_model_person']['types']['1']['showitem'] = str_replace(array(',fal_image,'), array(','), $TCA['tx_nnaddress_domain_model_person']['types']['1']['showitem'] );
+	unset($TCA['tx_nnaddress_domain_model_person']['columns']['fal_image']);
+} else if ( $_extConfig['useFal'] == 1 ) {
+	$TCA['tx_nnaddress_domain_model_person']['types']['1']['showitem'] = str_replace(array(',image,'), array(','), $TCA['tx_nnaddress_domain_model_person']['types']['1']['showitem'] );
+	unset($TCA['tx_nnaddress_domain_model_person']['columns']['image']);
+}
+
+unset($_extConfig);
+
+ */
+
+// Add Flexform if in extManager Conf is set or remove the sheet
+// \NN\NnAddress\Utility\Flexform::modifyFlexSheet($TCA, 'person');

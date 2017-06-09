@@ -1,19 +1,18 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <T3DataStructure>
-    <meta>
-        <langDisable>1</langDisable>
-    </meta>
-    <sheets>
-        <sDEF>
-            <ROOT>
-                <TCEforms>
-                    <sheetTitle>LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_flexForm_sheet_general</sheetTitle>
-                </TCEforms>
-                <type>array</type>
-                <el>
+	<meta>
+		<langDisable>1</langDisable>
+	</meta>
+	<sheets>
+		<sDEF>
+			<ROOT>
+				<TCEforms>
+					<sheetTitle>LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_flexForm_sheet_general</sheetTitle>
+				</TCEforms>
+				<type>array</type>
+				<el>
 					<settings.persons>
-                        <TCEforms>
-                            <label>LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_flexForm_persons</label>
+						<TCEforms>
+							<label>LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_flexForm_persons</label>
 							<config>
 								<type>group</type>
 								<internal_type>db</internal_type>
@@ -29,10 +28,27 @@
 									</suggest>
 								</wizards>
 							</config> 
-                        </TCEforms>
-                    </settings.persons>
-                </el>
-            </ROOT>
-        </sDEF>
-    </sheets>
+						</TCEforms>
+					</settings.persons>
+					<!-- Template Layout -->
+					<settings.templateLayout>
+						<TCEforms>
+							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_template.templateLayout</label>
+							<config>
+								<type>select</type>
+								<itemsProcFunc>NN\NnAddress\Hooks\ItemsProcFunc->user_templateLayout</itemsProcFunc>
+								<renderType>selectSingle</renderType>
+								<items>
+									<numIndex index="0" type="array">
+										<numIndex index="0"></numIndex>
+										<numIndex index="1"></numIndex>
+									</numIndex>
+								</items>
+							</config>
+						</TCEforms>
+					</settings.templateLayout>
+				</el>
+			</ROOT>
+		</sDEF>
+	</sheets>
 </T3DataStructure>

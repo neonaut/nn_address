@@ -3,8 +3,33 @@ if (!defined ('TYPO3_MODE')) {
 	die ('Access denied.');
 }
 
-$TCA['tx_nnaddress_domain_model_group'] = array(
-	'ctrl' => $TCA['tx_nnaddress_domain_model_group']['ctrl'],
+return array(
+
+	'ctrl' => array(
+		'title'	=> 'LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_group',
+		'label' => 'title',
+		'tstamp' => 'tstamp',
+		'crdate' => 'crdate',
+		'cruser_id' => 'cruser_id',
+		'dividers2tabs' => TRUE,
+
+		'versioningWS' => 2,
+		'versioning_followPages' => TRUE,
+		'origUid' => 't3_origuid',
+		'languageField' => 'sys_language_uid',
+		'transOrigPointerField' => 'l10n_parent',
+		'transOrigDiffSourceField' => 'l10n_diffsource',
+		'delete' => 'deleted',
+		'enablecolumns' => array(
+			'disabled' => 'hidden',
+			'starttime' => 'starttime',
+			'endtime' => 'endtime',
+		),
+		'searchFields' => 'title,description,',
+		// 'dynamicConfigFile' => 'EXT:nn_address/Configuration/TCA/Group.php',
+		'iconfile' => 'EXT:nn_address/Resources/Public/Icons/tx_nnaddress_domain_model_group.gif'
+	),
+
 	'interface' => array(
 		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, description, parent_group',
 	),
@@ -18,15 +43,19 @@ $TCA['tx_nnaddress_domain_model_group'] = array(
 		'sys_language_uid' => array(
 			'exclude' => 1,
 			'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.language',
-			'config' => array(
-				'type' => 'select',
-				'foreign_table' => 'sys_language',
-				'foreign_table_where' => 'ORDER BY sys_language.title',
-				'items' => array(
-					array('LLL:EXT:lang/locallang_general.xlf:LGL.allLanguages', -1),
-					array('LLL:EXT:lang/locallang_general.xlf:LGL.default_value', 0)
-				),
-			),
+            'config' => [
+                'type' => 'select',
+                'renderType' => 'selectSingle',
+                'special' => 'languages',
+                'items' => [
+                    [
+                        'LLL:EXT:lang/locallang_general.xlf:LGL.allLanguages',
+                        -1,
+                        'flags-multiple'
+                    ],
+                ],
+                'default' => 0,
+            ]
 		),
 		'l10n_parent' => array(
 			'displayCond' => 'FIELD:sys_language_uid:>:0',
@@ -34,6 +63,7 @@ $TCA['tx_nnaddress_domain_model_group'] = array(
 			'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.l18n_parent',
 			'config' => array(
 				'type' => 'select',
+				'renderType' => 'selectSingle',
 				'items' => array(
 					array('', 0),
 				),
@@ -117,6 +147,7 @@ $TCA['tx_nnaddress_domain_model_group'] = array(
 			'label' => 'LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_group.parent_group',
 			'config' => array(
 				'type' => 'select',
+				'renderType' => 'selectSingle',
 				'foreign_table' => 'tx_nnaddress_domain_model_group',
 				'foreign_table_where' => ' AND tx_nnaddress_domain_model_group.parent_group <> ###REC_FIELD_uid### AND (((\'###PAGE_TSCONFIG_IDLIST###\' <> \'\' OR \'###PAGE_TSCONFIG_IDLIST###\' > 0) AND FIND_IN_SET(tx_nnaddress_domain_model_group.pid,\'###PAGE_TSCONFIG_IDLIST###\')) OR (\'###PAGE_TSCONFIG_IDLIST###\' = \'\' OR \'###PAGE_TSCONFIG_IDLIST###\' = 0)) AND tx_nnaddress_domain_model_group.sys_language_uid=###REC_FIELD_sys_language_uid###',
 				'renderMode' => 'tree',
@@ -133,21 +164,9 @@ $TCA['tx_nnaddress_domain_model_group'] = array(
 				'maxitems' => 1,
 			),
 		),
-		'flexform' => array(
-			'exclude' => 1,
-			'label' => '',
-			'config' => array(
-				'type' => 'flex',
-				'ds_pointerField' => 'uid',
-				'ds' => array(
-					'default' => ''
-				),
-			),
-		),
 	),
 );
 
-// Add Flexform if in extManager Conf is set or remove the sheet
-\NN\NnAddress\Utility\Flexform::modifyFlexSheet($TCA, 'group');
+// // Add Flexform if in extManager Conf is set or remove the sheet
+// \NN\NnAddress\Utility\Flexform::modifyFlexSheet($TCA, 'group');
 
-?>

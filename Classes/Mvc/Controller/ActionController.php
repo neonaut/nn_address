@@ -25,6 +25,8 @@ namespace NN\NnAddress\Mvc\Controller;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+use TYPO3\CMS\Extbase\Mvc\View\ViewInterface;
+
 /**
  * Useful functions for developers not only for this extension
  *
@@ -75,6 +77,17 @@ class ActionController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 		
 		// Check the storagePid
 		$this->checkStoragePid();
+	}
+	
+	/**
+	 * Makes the data object in fluid accessible
+	 *
+     * @param ViewInterface $view The view to be initialized
+	 * @return void
+	*/
+	protected function initializeView(ViewInterface $view) {
+		parent::initializeView($view);
+		$view->assign('data', $this->configurationManager->getContentObject()->data);
 	}
 	
 	/**

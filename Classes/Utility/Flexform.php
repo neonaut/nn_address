@@ -17,16 +17,17 @@ class Flexform {
         $FlexFormPath = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/FlexForms/';
         $extensionName = \TYPO3\CMS\Core\Utility\GeneralUtility::underscoredToUpperCamelCase($_EXTKEY);
 				
-        $FlexForms = \TYPO3\CMS\Core\Utility\GeneralUtility::getFilesInDir($FlexFormPath, 'xml');
+		$FlexForms = \TYPO3\CMS\Core\Utility\GeneralUtility::getFilesInDir($FlexFormPath, 'xml');
 				
-        foreach ($FlexForms as $FlexForm) {
+		foreach ($FlexForms as $FlexForm) {
 			if ( preg_match("/^Model_(.*)$/",$FlexForm) ) continue;
 			
             $fileKey = str_replace('.xml', '', $FlexForm);
 
             $pluginSignature = strtolower($extensionName . '_' . $fileKey);
 			
-            $TCA['tt_content']['types']['list']['subtypes_excludelist'][$pluginSignature] = 'layout,select_key,recursive';
+            #$TCA['tt_content']['types']['list']['subtypes_excludelist'][$pluginSignature] = 'layout,select_key,recursive';
+						$TCA['tt_content']['types']['list']['subtypes_excludelist'][$pluginSignature] = 'select_key,recursive';
             $TCA['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
 
             $fileFlexForm = 'FILE:EXT:' . $_EXTKEY . '/Configuration/FlexForms/' . $fileKey . '.xml';
@@ -43,7 +44,8 @@ class Flexform {
                 }            
               } 
 
-              \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue($pluginSignature, $fileFlexForm);
+
+				\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue($pluginSignature, $fileFlexForm);
         }
     }
 	
