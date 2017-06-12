@@ -50,8 +50,6 @@
 					<!--<f:comment>
 						Example on using the NN Viewhelper to get a specific entry by type field.
 						In this case get only the WORK Phone number.
-						
-						Other view helper examples, like only get the first (ordered by sorting) entry found in /Resources/Private/ContentDesigner/ templates
 					</f:comment>-->
 					<f:alias map="{phone: '{person.phones -> nn:iterator.getByProperty(property:\'type\',value:1)}'}">
 						{phone.number}
