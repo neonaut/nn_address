@@ -12,9 +12,8 @@ return array(
 		'crdate' => 'crdate',
 		'cruser_id' => 'cruser_id',
 		'dividers2tabs' => TRUE,
-
-		'versioningWS' => 2,
-		'versioning_followPages' => TRUE,
+        'versioningWS' => 2,
+        'versioning_followPages' => TRUE,
 		'origUid' => 't3_origuid',
 		'languageField' => 'sys_language_uid',
 		'transOrigPointerField' => 'l10n_parent',
@@ -100,11 +99,7 @@ return array(
 				'size' => 13,
 				'max' => 20,
 				'eval' => 'datetime',
-				'checkbox' => 0,
-				'default' => 0,
-				'range' => array(
-					'lower' => mktime(0, 0, 0, date('m'), date('d'), date('Y'))
-				),
+				'default' => 0
 			),
 		),
 		'endtime' => array(
@@ -116,11 +111,7 @@ return array(
 				'size' => 13,
 				'max' => 20,
 				'eval' => 'datetime',
-				'checkbox' => 0,
-				'default' => 0,
-				'range' => array(
-					'lower' => mktime(0, 0, 0, date('m'), date('d'), date('Y'))
-				),
+				'default' => 0
 			),
 		),
 		'type' => array(
@@ -230,7 +221,6 @@ return array(
 			'label' => '',
 			'config' => array(
 				'type' => 'flex',
-				'ds_pointerField' => 'uid',
 				'ds' => array(
 					'default' => 'FILE:EXT:nn_address/Configuration/FlexForms/Model/Address.xml',
 				),
