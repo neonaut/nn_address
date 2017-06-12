@@ -68,6 +68,8 @@ return array(
 				),
 				'foreign_table' => 'tx_nnaddress_domain_model_group',
 				'foreign_table_where' => 'AND tx_nnaddress_domain_model_group.pid=###CURRENT_PID### AND tx_nnaddress_domain_model_group.sys_language_uid IN (-1,0)',
+                'showIconTable' => false,
+                'default' => 0,
 			),
 		),
 		'l10n_diffsource' => array(

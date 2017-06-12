@@ -56,25 +56,28 @@ return array(
 				'default' => 0,
 			]
 		),
-		'l10n_parent' => array(
-			'displayCond' => 'FIELD:sys_language_uid:>:0',
-			'exclude' => 1,
-			'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.l18n_parent',
-			'config' => array(
-				'type' => 'select',
-				'renderType' => 'selectSingle',
-				'items' => array(
-					array('', 0),
-				),
-				'foreign_table' => 'tx_nnaddress_domain_model_address',
-				'foreign_table_where' => 'AND tx_nnaddress_domain_model_address.pid=###CURRENT_PID### AND tx_nnaddress_domain_model_address.sys_language_uid IN (-1,0)',
-			),
-		),
-		'l10n_diffsource' => array(
-			'config' => array(
-				'type' => 'passthrough',
-			),
-		),
+        'l10n_parent' => [
+            'displayCond' => 'FIELD:sys_language_uid:>:0',
+            'exclude' => true,
+            'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.l18n_parent',
+            'config' => [
+                'type' => 'select',
+                'renderType' => 'selectSingle',
+                'items' => [
+                    ['', 0],
+                ],
+                'foreign_table' => 'tx_nnaddress_domain_model_address',
+                'foreign_table_where' => 'AND tx_nnaddress_domain_model_address.pid=###CURRENT_PID### AND tx_nnaddress_domain_model_address.sys_language_uid IN (-1,0)',
+                'showIconTable' => false,
+                'default' => 0,
+            ]
+        ],
+        'l10n_diffsource' => [
+            'config' => [
+                'type' => 'passthrough',
+                'default' => ''
+            ]
+        ],
 		't3ver_label' => array(
 			'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.versionLabel',
 			'config' => array(
