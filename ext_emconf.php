@@ -15,7 +15,7 @@ $EM_CONF[$_EXTKEY] = array (
 	'description' => 'Powerful Address extension. Fully based on Extbase/Fluid as an new alternative to tt_address. You can add multiple addresses,email address, etc. to a contact. No need to create multiple for one anymore. If more fields neededyou can simply extend them with flexforms.',
 	'category' => 'plugin',
 	'shy' => 0,
-	'version' => '7.0.1',
+	'version' => '8.0.0',
 	'dependencies' => '',
 	'conflicts' => '',
 	'priority' => '',
@@ -36,9 +36,7 @@ $EM_CONF[$_EXTKEY] = array (
 	array (
 		'depends' => 
 		array (
-			'extbase' => '6.0.0-7.6.99',
-			'fluid' => '6.0.0-7.6.99',
-			'typo3' => '6.0.0-7.6.99',
+            'typo3' => '7.6.13-8.7.99',
 		),
 		'conflicts' => 
 		array (
