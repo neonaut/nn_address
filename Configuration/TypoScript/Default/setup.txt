@@ -39,6 +39,12 @@ plugin.tx_nnaddress {
 		searchInFields      = {$plugin.tx_nnaddress.settings.searchInFields}
 		itemsPerPage        = {$plugin.tx_nnaddress.settings.itemsPerPage}
 		groupSearchTypeAnd  = {$plugin.tx_nnaddress.settings.groupSearchTypeAnd}
+        pagebrowser {
+            itemsPerPage         = 5
+            insertAbove          = 1
+            insertBelow          = 1
+            maximumNumberOfLinks = 10
+        }
 	}
 	objects {
 		# Hook: Checks if action should be cached. In this case no caching if searchBox is enabled
