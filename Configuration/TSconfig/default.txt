@@ -27,14 +27,14 @@ mod.web_list {
 		tx_nnaddress_domain_model_address.hideTable = 1
 		tx_nnaddress_domain_model_mail.hideTable    = 1
 	}
-	
 	deniedNewTables := addToList(tx_nnaddress_domain_model_phone,tx_nnaddress_domain_model_address,tx_nnaddress_domain_model_mail)
 }
 
-tx_nnaddress.templateLayouts {
-        1 = A custom layout
-        2 = An other custom layout
-}
+# Example to add custom template layouts
+# tx_nnaddress.templateLayouts {
+#        1 = A custom layout
+#        2 = An other custom layout
+# }
 
 # Possibility to limit the selection of groups to a special page id
 TCEFORM.tx_nnaddress_domain_model_person.groups.PAGE_TSCONFIG_IDLIST      = 
