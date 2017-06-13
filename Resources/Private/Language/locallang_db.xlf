@@ -31,7 +31,39 @@
 			<trans-unit id="tx_nnaddress_flexForm_associated">
 				<source>Associated Persons</source>
 			</trans-unit>
-
+			<trans-unit id="tx_nnaddress_flexForm_template">
+				<source>Template</source>
+			</trans-unit>
+			<trans-unit id="tx_nnaddress_flexForm_startingpoint">
+				<target>starting point</target>
+			</trans-unit>
+			<trans-unit id="tx_nnaddress_flexForm_categories">
+				<source>Categories</source>
+			</trans-unit>
+			<trans-unit id="tx_nnaddress_flexForm_category_conjunction">
+				<target>category modus</target>
+			</trans-unit>
+			<trans-unit id="tx_nnaddress_flexForm_category_conjunction.all">
+				<source>Don't care, show all</source>
+			</trans-unit>
+			<trans-unit id="tx_nnaddress_flexForm_category_conjunction.or">
+				<source>Show items with selected categories (OR)</source>
+			</trans-unit>
+			<trans-unit id="tx_nnaddress_flexForm_category_conjunction.and">
+				<source>Show items with selected categories (AND)</source>
+			</trans-unit>
+			<trans-unit id="tx_nnaddress_flexForm_category_conjunction.notor">
+				<source>Do NOT show items with selected categories (AND)</source>
+			</trans-unit>
+			<trans-unit id="tx_nnaddress_flexForm_category_conjunction.notand">
+				<source>Do NOT show items with selected categories (OR)</source>
+			</trans-unit>
+			<trans-unit id="tx_nnaddress_flexForm_description">
+				<source>Description</source>
+			</trans-unit>
+			<trans-unit id="tx_nnaddress_flexForm_associated">
+				<source>Associated Persons</source>
+			</trans-unit>
 			<trans-unit id="tx_nnaddress_domain_model_person">
 				<source>Person</source>
 			</trans-unit>

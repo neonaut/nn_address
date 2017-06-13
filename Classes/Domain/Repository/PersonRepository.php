@@ -25,6 +25,9 @@ namespace NN\NnAddress\Domain\Repository;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Persistence\QueryInterface;
+
 /**
  *
  *
@@ -46,7 +49,7 @@ class PersonRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	public function findByUids($personList) {
 		$query = $this->createQuery();
 		
-		$personList = \TYPO3\CMS\Core\Utility\GeneralUtility::intExplode(",",$personList);
+		$personList = GeneralUtility::intExplode(",",$personList);
 		
 		foreach ( $personList as $personUid ) {
 			$constraints[] = $query->equals('uid', $personUid);
@@ -60,7 +63,91 @@ class PersonRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 		
 		return $query->execute();
 	}
-	
+
+
+
+
+	/**
+	 * Find all Persons by Demand
+	 *
+	 * @param \NN\NnAddress\Domain\Model\Dto\PersonsDemand $demand
+	 * @return \TYPO3\CMS\Extbase\Persistence\Generic\QueryResult
+	 */
+	public function findDemanded(\NN\NnAddress\Domain\Model\Dto\PersonsDemand $demand) {
+		$query = $this->createQuery();
+
+		$constraints = array();
+
+		// Categories
+		if (!empty($demand->getCategoryConjunction()) && sizeof($demand->getCategories()) > 0) {
+			$categoryConstraints = array();
+
+			foreach ($demand->getCategories() as $category) {
+				$categoryConstraints[] = $query->contains('categories', $category);
+			}
+
+			if ($categoryConstraints) {
+				switch (strtolower($demand->getCategoryConjunction())) {
+					case 'or':
+						$constraints[] = $query->logicalOr($categoryConstraints);
+						break;
+					case 'notor':
+						$constraints[] = $query->logicalNot($query->logicalOr($categoryConstraints));
+						break;
+					case 'notand':
+						$constraints[] = $query->logicalNot($query->logicalAnd($categoryConstraints));
+						break;
+					case 'and':
+					default:
+					$constraints[] = $query->logicalAnd($categoryConstraints);
+				}
+			}
+		}
+
+		// Groups
+		if (count($demand->getGroups()) > 0) {
+			foreach ($demand->getGroups() as $group) {
+				if ($group > 0) {
+					$constraints[] = $query->logicalAnd(
+						$query->contains('groups', $group),
+						$query->equals('groups.hidden', 0),
+						$query->equals('groups.deleted', 0)
+					);
+				}
+			}
+		}
+		// Search
+		if ( !empty($demand->getSearchTerm())) {
+			foreach ($demand->getSearchFields() as $field) {
+				$constraints[] = $query->like($field, '%' . $demand->getSearchTerm() . '%');
+			}
+		}
+
+		// Put together constraints
+		if ( count($constraints) > 0 ) {
+			$query->matching(
+				$query->logicalAnd($constraints)
+			);
+		}
+
+		// restrict to pid
+		$query->equals('pid', $this->storagePid);
+
+		// Ordering
+		$orderings = array('lastName' => QueryInterface::ORDER_ASCENDING);
+		if ($demand->getOrderBy()) {
+			$orderings = array($demand->getOrderBy() => QueryInterface::ORDER_ASCENDING);
+		}
+
+		if ($demand->getOrderDirection()) {
+			$orderings = array(array_keys($orderings)[0] => ((strtolower($demand->getOrderDirection()) == 'desc') ? QueryInterface::ORDER_DESCENDING : QueryInterface::ORDER_ASCENDING));
+		}
+
+		$query->setOrderings($orderings);
+
+		return $query->execute();
+	}
+
 	/**
 	 * Find all Persons by a Group
 	 *

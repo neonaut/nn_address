@@ -61,8 +61,9 @@ class PersonController extends \NN\NnAddress\Mvc\Controller\BasicController {
 		$this->setOrderings($this->personRepository,'lastName');
 		
 		// Get all contacts
-		$persons = $this->getPersons();
-		
+		//$persons = $this->getPersons();
+		$persons = $this->getPersonsByDemand();
+
 		// Give it to fluid
 		$this->view->assign('persons', $persons);
 		$this->setSearchPresets();
@@ -78,13 +79,13 @@ class PersonController extends \NN\NnAddress\Mvc\Controller\BasicController {
 		$this->setOrderings($this->personRepository,'lastName');
 		
 		// Init basic variables
-		$persons        = $this->getPersons();
+		$persons        = $this->getPersonsByDemand();
 		$charset        = AbcListActionHelper::getSystemCharset();
 		$range          = array();
 		$personCount    = 0;
 		$groupedPersons = array();
 		$filterChar     = $this->getRequestArgument('char', '/^([A-Z]{1}|NUM)$/');
-		$filterChar     = ( $filterChar == 'NUM' ) ? '#' : $filterChar;
+		$filterChar     = ( $filterChar === 'NUM' ) ? '#' : $filterChar;
 		
 		// Create grouping Array
 		AbcListActionHelper::createGroupArrays($range, $groupedPersons);
@@ -94,9 +95,9 @@ class PersonController extends \NN\NnAddress\Mvc\Controller\BasicController {
 			$firstChar = AbcListActionHelper::getFirstChar($person, $charset, $this->orderBy);
 			
 			if ( !empty($filterChar) ) { // If filter by Char activated, show only the selected
-				if ( $filterChar == $firstChar ) { // Add them to A-Z Group
+				if ( $filterChar === $firstChar ) { // Add them to A-Z Group
 					AbcListActionHelper::groupPerson($firstChar, $range, $personCount, $groupedPersons, $person);
-				} elseif ( ($filterChar == '#') && (!array_key_exists($firstChar, $range)) ) { // Add them to # Group
+				} elseif ( ($filterChar === '#') && (!array_key_exists($firstChar, $range)) ) { // Add them to # Group
 					AbcListActionHelper::groupPerson($firstChar, $range, $personCount, $groupedPersons, $person);
 				} else { // Just count
 					AbcListActionHelper::pullUpRange($firstChar, $range);
@@ -163,5 +164,17 @@ class PersonController extends \NN\NnAddress\Mvc\Controller\BasicController {
 		}
 	}
 	
+	/**
+	 * Lifecycle-Event
+	 * wird nach der Initialisierung des Objekts und nach dem Auflösen der Dependencies aufgerufen.
+	 *
+	public function initializeObject() {
+		$this->databaseHandle = $GLOBALS['TYPO3_DB'];
+		$this->databaseHandle->explainOutput = 2;
+		$this->databaseHandle->store_lastBuiltQuery = TRUE;
+		$this->databaseHandle->debugOutput = 2;
+	}
+	 */
+
 }
 ?>

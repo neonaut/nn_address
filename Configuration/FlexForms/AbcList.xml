@@ -10,6 +10,8 @@
 				</TCEforms>
 				<type>array</type>
 				<el>
+<!--  not support yet -->
+<!--
 					<settings.enableSearch>
 						<TCEforms>
 							<exclude>1</exclude>
@@ -19,6 +21,26 @@
 							</config>
 						</TCEforms>
 					</settings.enableSearch>
+-->
+
+					<!-- Template Layout -->
+					<settings.templateLayout>
+						<TCEforms>
+							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_template.templateLayout</label>
+							<config>
+								<type>select</type>
+								<itemsProcFunc>NN\NnAddress\Hooks\ItemsProcFunc->user_templateLayout</itemsProcFunc>
+								<renderType>selectSingle</renderType>
+								<items>
+									<numIndex index="0" type="array">
+										<numIndex index="0"></numIndex>
+										<numIndex index="1"></numIndex>
+									</numIndex>
+								</items>
+							</config>
+						</TCEforms>
+					</settings.templateLayout>
+
 					<settings.orderBy>
 						<TCEforms>
 							<exclude>1</exclude>
@@ -90,6 +112,14 @@
 										<numIndex index="0">LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person.email</numIndex>
 										<numIndex index="1">email</numIndex>
 									</numIndex>
+									<numIndex index="16" type="array">
+										<numIndex index="0">LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_address.country</numIndex>
+										<numIndex index="1">addresses.country</numIndex>
+									</numIndex>
+									<numIndex index="17" type="array">
+										<numIndex index="0">LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_address.city</numIndex>
+										<numIndex index="1">addresses.city</numIndex>
+									</numIndex>
 								</items>
 								<size>1</size>
 								<maxitems>1</maxitems>
@@ -121,6 +151,28 @@
 							</config> 
 						</TCEforms>
 					</settings.order>
+
+					<settings.startingpoint>
+						<TCEforms>
+						<exclude>1</exclude>
+							<label>LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_flexForm_startingpoint</label>
+							<config>
+								<type>group</type>
+								<internal_type>db</internal_type>
+								<allowed>pages</allowed>
+								<size>3</size>
+								<maxitems>50</maxitems>
+								<minitems>0</minitems>
+								<show_thumbs>1</show_thumbs>
+								<wizards>
+									<suggest>
+										<type>suggest</type>
+									</suggest>
+								</wizards>
+							</config>
+						</TCEforms>
+					</settings.startingpoint>
+
 					<settings.groups>
 						<TCEforms>
 							<exclude>1</exclude>
@@ -140,46 +192,67 @@
 										<type>suggest</type>
 									</suggest>
 								</wizards>
-							</config> 
+							</config>
 						</TCEforms>
 					</settings.groups>
-					<!-- Template Layout -->
-					<settings.templateLayout>
+
+					<!-- Category -->
+					<settings.categories>
 						<TCEforms>
-							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_template.templateLayout</label>
+							<label>LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_flexForm_categories</label>
 							<config>
 								<type>select</type>
-								<itemsProcFunc>NN\NnAddress\Hooks\ItemsProcFunc->user_templateLayout</itemsProcFunc>
-								<renderType>selectSingle</renderType>
+								<renderMode>tree</renderMode>
+								<treeConfig>
+									<parentField>parent</parentField>
+									<appearance>
+										<maxLevels>99</maxLevels>
+										<expandAll>TRUE</expandAll>
+										<showHeader>TRUE</showHeader>
+									</appearance>
+								</treeConfig>
+								<foreign_table>sys_category</foreign_table>
+								<foreign_table_where> AND (sys_category.sys_language_uid = 0 OR sys_category.l10n_parent = 0) ORDER BY sys_category.sorting</foreign_table_where>
+								<size>10</size>
+								<autoSizeMax>20</autoSizeMax>
+								<minitems>0</minitems>
+								<maxitems>99</maxitems>
+							</config>
+						</TCEforms>
+					</settings.categories>
+
+					<!-- Category Mode -->
+					<settings.categoryConjunction>
+						<TCEforms>
+							<label>LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_flexForm_category_conjunction</label>
+							<config>
+								<type>select</type>
 								<items>
 									<numIndex index="0" type="array">
-										<numIndex index="0"></numIndex>
+										<numIndex index="0">LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_flexForm_category_conjunction.all</numIndex>
 										<numIndex index="1"></numIndex>
+									</numIndex>
+									<numIndex index="1">
+										<numIndex index="0">LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_flexForm_category_conjunction.or</numIndex>
+										<numIndex index="1">or</numIndex>
+									</numIndex>
+									<numIndex index="2">
+										<numIndex index="0">LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_flexForm_category_conjunction.and</numIndex>
+										<numIndex index="1">and</numIndex>
+									</numIndex>
+									<numIndex index="3">
+										<numIndex index="0">LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_flexForm_category_conjunction.notor</numIndex>
+										<numIndex index="1">notor</numIndex>
+									</numIndex>
+									<numIndex index="4">
+										<numIndex index="0">LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_flexForm_category_conjunction.notand</numIndex>
+										<numIndex index="1">notand</numIndex>
 									</numIndex>
 								</items>
 							</config>
 						</TCEforms>
-					</settings.templateLayout>
-					<settings.startingpoint>
-						<TCEforms>
-						<exclude>1</exclude>
-						<label>LLL:EXT:lang/locallang_general.xml:LGL.startingpoint</label>
-							<config>
-								<type>group</type>
-								<internal_type>db</internal_type>
-								<allowed>pages</allowed>
-								<size>3</size>
-								<maxitems>50</maxitems>
-								<minitems>0</minitems>
-								<show_thumbs>1</show_thumbs>
-								<wizards>
-									<suggest>
-										<type>suggest</type>
-									</suggest>
-								</wizards>
-							</config>
-						</TCEforms>
-					</settings.startingpoint>
+					</settings.categoryConjunction>
+
 				</el>
 			</ROOT>
 		</sDEF>

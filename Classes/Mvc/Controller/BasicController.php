@@ -1,6 +1,6 @@
 <?php
 namespace NN\NnAddress\Mvc\Controller;
-
+use \TYPO3\CMS\Core\Utility\GeneralUtility;
 /***************************************************************
  *  Copyright notice
  *
@@ -35,6 +35,77 @@ namespace NN\NnAddress\Mvc\Controller;
 class BasicController extends \NN\NnAddress\Mvc\Controller\ActionController {
 	
 	/**
+	 * personRepository
+	 *
+	 * @var \NN\NnAddress\Domain\Repository\PersonRepository
+	 * @inject
+	 */
+	protected $personRepository = NULL;
+
+
+	/**
+	 * Create the demand object which define which records will get shown
+	 *
+	 * @param array $settings
+	 * @param string $class optional class which must be an instance of \NN\NnAddress\Domain\Model\Dto\PersonsDemand
+	 * @return \NN\NnAddress\Domain\Model\Dto\PersonsDemand
+	 */
+	protected function createDemandObject($settings, $class = 'NN\\NnAddress\\Domain\Model\\Dto\\PersonsDemand') {
+
+		/* @var $demand \NN\NnAddress\Domain\Model\Dto\PersonsDemand */
+		$demand = $this->objectManager->get($class, $settings);
+		if (!$demand instanceof \NN\NnAddress\Domain\Model\Dto\PersonsDemand) {
+			throw new \UnexpectedValueException(
+				sprintf('The demand object must be an instance of \NN\NnAddress\Domain\Model\Dto\PersonsDemand, but %s given!', $class),
+				5976576597);
+		}
+		$demand->setSelectedIds(GeneralUtility::intExplode(',', $settings['selectedUids'], TRUE));
+
+		$groups = $this->getRequestArgument('group', '/^([0-9]{1,})$/', (($settings['groupSearchTypeAnd'] == 1) ? TRUE : FALSE));
+		$groups = ( $groups !== NULL ) ? $groups : $this->settings['groups'];
+		if ( is_array($groups) ) {
+			$groups = implode(',', $groups);
+		} else {
+			if ( !empty($this->settings['groups']) || !empty($groups) ) {
+				// Append to selected groups the subgroups
+				$groupIdList = array($groups);
+				foreach ( explode(',', $groups) as $group ) {
+					$this->getGroupIdList($group, $groupIdList);
+				}
+
+				$groups = implode(',',$groupIdList);
+			}
+		}
+		$demand->setGroups(GeneralUtility::intExplode(',', $groups, TRUE));
+
+		$demand->setCategories(GeneralUtility::intExplode(',', $settings['categories'], TRUE));
+		$demand->setCategoryConjunction($settings['categoryConjunction']);
+
+
+
+		$demand->setSearchTerm($this->getRequestArgument('sword', $settings['swordValidationExpr']));
+		$demand->setSearchFields(\TYPO3\CMS\Extbase\Utility\ArrayUtility::trimExplode(',', $settings['searchInFields'], true));
+
+		$demand->setOrderBy($settings['orderBy']);
+		$demand->setOrderDirection($settings['order']);
+
+		return $demand;
+	}
+
+
+
+	/**
+	 * Find all persons according to Demand
+	 *
+	 * @return \TYPO3\CMS\Extbase\Persistence\Generic\QueryResult
+	 */
+	protected function getPersonsByDemand() {
+		$demand = $this->createDemandObject($this->settings);
+		return $this->personRepository->findDemanded($demand);
+	}
+
+
+	/**
 	 * Find all persons, optional by selected groups
 	 *
 	 * @return \TYPO3\CMS\Extbase\Persistence\Generic\QueryResult
@@ -44,6 +115,10 @@ class BasicController extends \NN\NnAddress\Mvc\Controller\ActionController {
 		$groups = $this->getRequestArgument('group', '/^([0-9]{1,})$/', (($this->settings['groupSearchTypeAnd'] == 1) ? TRUE : FALSE));
 		$groups = ( $groups !== NULL ) ? $groups : $this->settings['groups'];
 		
+		$categories = $this->settings['categories'];
+		$categoryConjunction = $this->settings['categoryConjunction'];
+
+
 		if ( is_array($groups) ) {
 			$groups = implode(',', $groups);
 		} else {
@@ -58,6 +133,10 @@ class BasicController extends \NN\NnAddress\Mvc\Controller\ActionController {
 			}
 		}
 		
+		if ( !empty($categories) ) {
+			return $this->personRepository->findByCategories($categories, $categoryConjunction);
+		}
+
 		if ( !empty($groups) ) {
 			if ( !empty($sword) ) {
 				return $this->personRepository->findByGroupsAndSword($groups, $sword, $this->settings['searchInFields'], (($this->settings['groupSearchTypeAnd'] == 1) ? TRUE : FALSE));

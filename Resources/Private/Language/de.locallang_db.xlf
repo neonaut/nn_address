@@ -29,9 +29,41 @@
 				<target>Beschreibung</target>
 			</trans-unit>
 			<trans-unit id="tx_nnaddress_flexForm_associated">
-				<target><![CDATA[Zugehörige Personen]]></target>
+				<source>Associated Persons</source>
 			</trans-unit>
-
+			<trans-unit id="tx_nnaddress_flexForm_template">
+				<source>Template</source>
+			</trans-unit>
+			<trans-unit id="tx_nnaddress_flexForm_startingpoint">
+				<target>Ausgangspunkt</target>
+			</trans-unit>
+			<trans-unit id="tx_nnaddress_flexForm_categories">
+				<target>Kategorien</target>
+			</trans-unit>
+			<trans-unit id="tx_nnaddress_flexForm_category_conjunction">
+				<target>Kategoriemodus</target>
+			</trans-unit>
+			<trans-unit id="tx_nnaddress_flexForm_category_conjunction.all">
+				<target>Kategorien nicht berücksichtigen</target>
+			</trans-unit>
+			<trans-unit id="tx_nnaddress_flexForm_category_conjunction.or">
+				<target>Adressen mit einer ausgewählten Kategorie (Oder)</target>
+			</trans-unit>
+			<trans-unit id="tx_nnaddress_flexForm_category_conjunction.and">
+				<target>Adressen mit allen ausgewählten Kategorien (Und)</target>
+			</trans-unit>
+			<trans-unit id="tx_nnaddress_flexForm_category_conjunction.notor">
+				<target>Adressen mit einer ausgewählten Kategorie NICHT zeigen</target>
+			</trans-unit>
+			<trans-unit id="tx_nnaddress_flexForm_category_conjunction.notand">
+				<target>Adressen mit allen ausgewählten Kategorien NICHT zeigen</target>
+			</trans-unit>
+			<trans-unit id="tx_nnaddress_flexForm_description">
+				<source>Description</source>
+			</trans-unit>
+			<trans-unit id="tx_nnaddress_flexForm_associated">
+				<source>Associated Persons</source>
+			</trans-unit>
 			<trans-unit id="tx_nnaddress_domain_model_person">
 				<target>Person</target>
 			</trans-unit>
@@ -181,7 +213,13 @@
 				<target>Beschreibung</target>
 			</trans-unit>
 			<trans-unit id="tx_nnaddress_domain_model_group.groups">
-				<target>Elterngruppe</target>
+				<source>Parent Group</source>
+			</trans-unit>
+			<trans-unit id="extmng.useFal" xml:space="preserve">
+				<source>Use FAL relations</source>
+			</trans-unit>
+			<trans-unit id="extmng.useFal.both" xml:space="preserve">
+				<source>Both</source>
 			</trans-unit>
 
 		</body>
