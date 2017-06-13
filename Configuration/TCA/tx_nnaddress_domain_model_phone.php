@@ -3,7 +3,12 @@ if (!defined('TYPO3_MODE')) {
     die ('Access denied.');
 }
 
-return array(
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+
+$_extConfig = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['nn_address']);
+
+$tx_nnaddress_domain_model_phone = [
 
     'ctrl' => array(
         'title' => 'LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_phone',
@@ -25,7 +30,6 @@ return array(
             'endtime' => 'endtime',
         ),
         'searchFields' => 'type,number',
-        // 'dynamicConfigFile' => 'EXT:nn_address/Configuration/TCA/Phone.php',
         'iconfile' => 'EXT:nn_address/Resources/Public/Icons/tx_nnaddress_domain_model_phone.gif'
     ),
 
@@ -170,8 +174,30 @@ return array(
                 'type' => 'passthrough',
             ),
         ),
-    ),
-);
+    )
+];
+
+
+$flexFormFile = $_extConfig['flexForm'] . 'Phone.xml';
+if (file_exists(GeneralUtility::getFileAbsFileName($flexFormFile))) {
+    $tempFlexform = [
+        'exclude' => 1,
+        'label' => '',
+        'config' => array(
+            'type' => 'flex',
+            'ds' => array(
+                'default' => 'FILE:' . $flexFormFile,
+            ),
+        ),
+    ];
+    $tx_nnaddress_domain_model_phone['columns']['flexform'] = $tempFlexform;
+    unset($tempFlexform);
+}
+
+unset($_extConfig);
+
+return $tx_nnaddress_domain_model_phone;
+
 
 // // Add Flexform if in extManager Conf is set or remove the sheet
 // \NN\NnAddress\Utility\Flexform::modifyFlexSheet($TCA, 'phone');

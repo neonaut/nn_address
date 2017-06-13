@@ -4,9 +4,11 @@ if (!defined('TYPO3_MODE')) {
 }
 
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
-return array(
+$_extConfig = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['nn_address']);
 
+$tx_nnaddress_domain_model_person = [
     'ctrl' => array(
         'title' => 'LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person',
         'label' => 'last_name',
@@ -29,10 +31,8 @@ return array(
             'endtime' => 'endtime',
         ),
         'searchFields' => 'gender,title,first_name,second_first_name,last_name,organisation,position,birthday,street,number,zip,city,phone,fax,email,website,notes',
-        // 'dynamicConfigFile' => 'EXT:nn_address/Configuration/TCA/Person.php',
         'iconfile' => 'EXT:nn_address/Resources/Public/Icons/tx_nnaddress_domain_model_person.gif'
     ),
-
     'interface' => array(
         'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, gender, title, first_name, second_first_name, last_name, organisation, position, image, fal_image, street, number, zip, city, phone, fax, email, website, notes, addresses, phones, mails, groups, categories, flexform',
     ),
@@ -390,24 +390,28 @@ return array(
                 'maxitems' => 9999,
                 'multiple' => 0,
             ),
-        ),
-        'flexform' => array(
-            'exclude' => 1,
-            'label' => '',
-            'config' => array(
-                'type' => 'flex',
-                'ds' => array(
-                    'default' => 'FILE:EXT:nn_address/Configuration/FlexForms/Model/Person.xml',
-                ),
-            ),
         )
-    ),
-);
+    )
+];
 
-/* 
-// Extension manager configuration
-$_extConfig = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['nn_address']);
 
+$flexFormFile = $_extConfig['flexForm'] . 'Person.xml';
+if (file_exists(GeneralUtility::getFileAbsFileName($flexFormFile))) {
+    $tempFlexform = [
+        'exclude' => 1,
+        'label' => '',
+        'config' => array(
+            'type' => 'flex',
+            'ds' => array(
+                'default' => 'FILE:' . $flexFormFile,
+            ),
+        ),
+    ];
+    $tx_nnaddress_domain_model_person['columns']['flexform'] = $tempFlexform;
+    unset($tempFlexform);
+}
+
+/*
 if ( $_extConfig['useFal'] == 0 ) {
 	$TCA['tx_nnaddress_domain_model_person']['types']['1']['showitem'] = str_replace(array(',fal_image,'), array(','), $TCA['tx_nnaddress_domain_model_person']['types']['1']['showitem'] );
 	unset($TCA['tx_nnaddress_domain_model_person']['columns']['fal_image']);
@@ -415,10 +419,8 @@ if ( $_extConfig['useFal'] == 0 ) {
 	$TCA['tx_nnaddress_domain_model_person']['types']['1']['showitem'] = str_replace(array(',image,'), array(','), $TCA['tx_nnaddress_domain_model_person']['types']['1']['showitem'] );
 	unset($TCA['tx_nnaddress_domain_model_person']['columns']['image']);
 }
-
+*/
 unset($_extConfig);
 
- */
+return $tx_nnaddress_domain_model_person;
 
-// Add Flexform if in extManager Conf is set or remove the sheet
-// \NN\NnAddress\Utility\Flexform::modifyFlexSheet($TCA, 'person');
