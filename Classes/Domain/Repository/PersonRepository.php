@@ -64,7 +64,25 @@ class PersonRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 		return $query->execute();
 	}
 
+    /**
+     * Find all Person by UID
+     *
+     * @param \int $personUid
+     * @return \TYPO3\CMS\Extbase\Persistence\Generic\QueryResult
+     */
+    public function findByUid($personUid) {
+        $query = $this->createQuery();
 
+        $constraints[] = $query->equals('uid', $personUid);
+
+        $query->matching(
+            $query->logicalOr($constraints)
+        );
+
+        $query->getQuerySettings()->setRespectStoragePage(FALSE);
+
+        return $query->execute();
+    }
 
 
 	/**
@@ -79,7 +97,7 @@ class PersonRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 		$constraints = array();
 
 		// Categories
-		if (!empty($demand->getCategoryConjunction()) && sizeof($demand->getCategories()) > 0) {
+		if (!empty($demand->getCategoryConjunction()) && count($demand->getCategories()) > 0) {
 			$categoryConstraints = array();
 
 			foreach ($demand->getCategories() as $category) {
