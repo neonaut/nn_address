@@ -16,7 +16,6 @@ $tx_nnaddress_domain_model_mail = [
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
         'cruser_id' => 'cruser_id',
-        'dividers2tabs' => true,
         'versioningWS' => 2,
         'versioning_followPages' => true,
         'origUid' => 't3_origuid',
@@ -36,10 +35,7 @@ $tx_nnaddress_domain_model_mail = [
         'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, email',
     ),
     'types' => array(
-        '1' => array('showitem' => 'l10n_parent, l10n_diffsource, hidden;;1, type, email, flexform'),
-    ),
-    'palettes' => array(
-        '1' => array('showitem' => ''),
+        '1' => array('showitem' => 'l10n_parent, l10n_diffsource, hidden, type, email, flexform'),
     ),
     'columns' => array(
         'sys_language_uid' => array(
@@ -71,7 +67,6 @@ $tx_nnaddress_domain_model_mail = [
                 ),
                 'foreign_table' => 'tx_nnaddress_domain_model_mail',
                 'foreign_table_where' => 'AND tx_nnaddress_domain_model_mail.pid=###CURRENT_PID### AND tx_nnaddress_domain_model_mail.sys_language_uid IN (-1,0)',
-                'showIconTable' => false,
                 'default' => 0,
             ),
         ),
@@ -102,8 +97,8 @@ $tx_nnaddress_domain_model_mail = [
             'config' => array(
                 'type' => 'input',
                 'size' => 13,
-                'max' => 20,
                 'eval' => 'datetime',
+                // 'renderType' => 'inputDateTime',
                 'default' => 0
             ),
         ),
@@ -114,8 +109,8 @@ $tx_nnaddress_domain_model_mail = [
             'config' => array(
                 'type' => 'input',
                 'size' => 13,
-                'max' => 20,
                 'eval' => 'datetime',
+                // 'renderType' => 'inputDateTime',
                 'default' => 0
             ),
         ),

@@ -17,7 +17,6 @@ $tx_nnaddress_domain_model_person = [
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
         'cruser_id' => 'cruser_id',
-        'dividers2tabs' => true,
         'versioningWS' => 2,
         'versioning_followPages' => true,
         'origUid' => 't3_origuid',
@@ -38,7 +37,7 @@ $tx_nnaddress_domain_model_person = [
     ),
     'types' => array(
         '1' => array(
-            'showitem' => 'l10n_parent, l10n_diffsource, hidden;;1, gender, title, first_name, second_first_name, last_name, organisation, position, birthday, fal_image, website, notes,
+            'showitem' => 'l10n_parent, l10n_diffsource, hidden, gender, title, first_name, second_first_name, last_name, organisation, position, birthday, fal_image, website, notes,
 									--div--;LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person.addresses, addresses, 
 									--div--;LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person.phones, phones,
 									--div--;LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person.mails, mails, 
@@ -46,9 +45,6 @@ $tx_nnaddress_domain_model_person = [
 									--div--;LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person.advanced, flexform,
 									--div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,starttime, endtime'
         ),
-    ),
-    'palettes' => array(
-        '1' => array('showitem' => ''),
     ),
     'columns' => array(
         'sys_language_uid' => array(
@@ -80,7 +76,6 @@ $tx_nnaddress_domain_model_person = [
                 ),
                 'foreign_table' => 'tx_nnaddress_domain_model_person',
                 'foreign_table_where' => 'AND tx_nnaddress_domain_model_person.pid=###CURRENT_PID### AND tx_nnaddress_domain_model_person.sys_language_uid IN (-1,0)',
-                'showIconTable' => false,
                 'default' => 0,
             ),
         ),
@@ -111,8 +106,9 @@ $tx_nnaddress_domain_model_person = [
             'config' => array(
                 'type' => 'input',
                 'size' => 13,
-                'max' => 20,
                 'eval' => 'datetime',
+                // ToDo 8 LTS only
+                // // 'renderType' => 'inputDateTime',
                 'default' => 0
             ),
         ),
@@ -123,9 +119,9 @@ $tx_nnaddress_domain_model_person = [
             'config' => array(
                 'type' => 'input',
                 'size' => 13,
-                'max' => 20,
                 'eval' => 'datetime',
-                'checkbox' => 0,
+                // ToDo 8 LTS only
+                // 'renderType' => 'inputDateTime',
                 'default' => 0
             ),
         ),
@@ -211,8 +207,9 @@ $tx_nnaddress_domain_model_person = [
                 'type' => 'input',
                 'size' => 7,
                 'eval' => 'date',
-                'checkbox' => 1,
-                'default' => time()
+                // ToDo 8 LTS only
+                // 'renderType' => 'inputDateTime',
+
             ),
         ),
         'image' => array(
@@ -222,7 +219,6 @@ $tx_nnaddress_domain_model_person = [
                 'type' => 'group',
                 'internal_type' => 'file',
                 'uploadfolder' => 'uploads/tx_nnaddress',
-                'show_thumbs' => 1,
                 'size' => 5,
                 'maxitems' => 5,
                 'minitems' => '0',
@@ -411,15 +407,18 @@ if (file_exists(GeneralUtility::getFileAbsFileName($flexFormFile))) {
     unset($tempFlexform);
 }
 
-/*
-if ( $_extConfig['useFal'] == 0 ) {
-	$TCA['tx_nnaddress_domain_model_person']['types']['1']['showitem'] = str_replace(array(',fal_image,'), array(','), $TCA['tx_nnaddress_domain_model_person']['types']['1']['showitem'] );
-	unset($TCA['tx_nnaddress_domain_model_person']['columns']['fal_image']);
-} else if ( $_extConfig['useFal'] == 1 ) {
-	$TCA['tx_nnaddress_domain_model_person']['types']['1']['showitem'] = str_replace(array(',image,'), array(','), $TCA['tx_nnaddress_domain_model_person']['types']['1']['showitem'] );
-	unset($TCA['tx_nnaddress_domain_model_person']['columns']['image']);
+if ($_extConfig['useIrre'] == 0) {
+    $tx_nnaddress_domain_model_person['types']['1']['showitem'] = 'l10n_parent, l10n_diffsource, hidden, gender, title, first_name, second_first_name, last_name, organisation, position, birthday, street, number, zip, city, phone, fax, email, fal_image, website, notes,--div--;LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person.assignment, groups, categories, 									--div--;LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person.advanced, flexform,--div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,starttime, endtime';
+    unset($TCA['tx_nnaddress_domain_model_person']['columns']['addresses']);
+    unset($TCA['tx_nnaddress_domain_model_person']['columns']['phones']);
+    unset($TCA['tx_nnaddress_domain_model_person']['columns']['mails']);
 }
-*/
+
+if ( $_extConfig['useFal'] == 0 ) {
+    $tx_nnaddress_domain_model_person['types']['1']['showitem'] = str_replace(',fal_image,', 'image', $tx_nnaddress_domain_model_person['types']['1']['showitem']);
+    unset($TCA['tx_nnaddress_domain_model_person']['columns']['fal_image']);
+}
+
 unset($_extConfig);
 
 return $tx_nnaddress_domain_model_person;
