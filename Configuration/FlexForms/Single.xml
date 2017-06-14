@@ -10,6 +10,36 @@
 				</TCEforms>
 				<type>array</type>
 				<el>
+
+					<!-- Template Layout -->
+					<settings.templateLayout>
+						<TCEforms>
+							<label>LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_flexForm_templateLayout</label>
+							<config>
+								<type>select</type>
+								<itemsProcFunc>NN\NnAddress\Hooks\ItemsProcFunc->user_templateLayout</itemsProcFunc>
+								<renderType>selectSingle</renderType>
+								<items>
+									<numIndex index="0" type="array">
+										<numIndex index="0"></numIndex>
+										<numIndex index="1"></numIndex>
+									</numIndex>
+								</items>
+							</config>
+						</TCEforms>
+					</settings.templateLayout>
+
+					<settings.descriptions>
+						<TCEforms>
+							<label>LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_flexForm_descriptions</label>
+							<config>
+								<type>text</type>
+								<cols>48</cols>
+								<rows>5</rows>
+							</config>
+						</TCEforms>
+					</settings.descriptions>
+
 					<settings.persons>
 						<TCEforms>
 							<label>LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_flexForm_persons</label>
@@ -33,23 +63,10 @@
 							</config> 
 						</TCEforms>
 					</settings.persons>
-					<!-- Template Layout -->
-					<settings.templateLayout>
-						<TCEforms>
-							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_template.templateLayout</label>
-							<config>
-								<type>select</type>
-								<itemsProcFunc>NN\NnAddress\Hooks\ItemsProcFunc->user_templateLayout</itemsProcFunc>
-								<renderType>selectSingle</renderType>
-								<items>
-									<numIndex index="0" type="array">
-										<numIndex index="0"></numIndex>
-										<numIndex index="1"></numIndex>
-									</numIndex>
-								</items>
-							</config>
-						</TCEforms>
-					</settings.templateLayout>
+
+
+
+
 				</el>
 			</ROOT>
 		</sDEF>
