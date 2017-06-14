@@ -37,6 +37,12 @@
 			<trans-unit id="tx_nnaddress_flexForm_startingpoint">
 				<target>Ausgangspunkt</target>
 			</trans-unit>
+			<trans-unit id="tx_nnaddress_flexForm_templateLayout">
+				<target>Template Layout</target>
+			</trans-unit>
+			<trans-unit id="tx_nnaddress_flexForm_descriptions">
+				<target>Ergänzende Beschreibung (zeilenweise pro Person)</target>
+			</trans-unit>
 			<trans-unit id="tx_nnaddress_flexForm_categories">
 				<target>Kategorien</target>
 			</trans-unit>
