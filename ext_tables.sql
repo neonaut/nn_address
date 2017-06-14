@@ -25,6 +25,7 @@ CREATE TABLE tx_nnaddress_domain_model_person (
 	email	varchar(255) DEFAULT '' NOT NULL,
 	website varchar(255) DEFAULT '' NOT NULL,
 	notes text NOT NULL,
+
 	addresses int(11) unsigned DEFAULT '0' NOT NULL,
 	phones int(11) unsigned DEFAULT '0' NOT NULL,
 	mails int(11) unsigned DEFAULT '0' NOT NULL,

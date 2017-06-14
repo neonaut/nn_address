@@ -6,3 +6,6 @@ flexFormPlugin = EXT:nn_address/Configuration/FlexForms/
 
 # cat=basic/label/101; type=options[LLL:EXT:lang/locallang_common.xlf:no=0,LLL:EXT:lang/locallang_common.xlf:yes=1,LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:extmng.useFal.both=2]; label=LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:extmng.useFal
 useFal = 1
+
+# cat=basic/label/101; type=options[LLL:EXT:lang/locallang_common.xlf:no=0,LLL:EXT:lang/locallang_common.xlf:yes=1]; label=LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:extmng.useIrre
+useIrre = 1
