@@ -65,13 +65,16 @@ class AbcListActionHelper {
 	 */
 	public static function getFirstChar(&$person, $charset, $field) {
 		$fieldStr  = call_user_func(array($person, 'get'.ucwords($field)));
-		
+		if (!empty($fieldStr)) {
 		// Normalize the string
 		$fieldStr = $GLOBALS['TSFE']->csConvObj->conv_case($charset, $fieldStr, 'toUpper');
 		$fieldStr = $GLOBALS['TSFE']->csConvObj->specCharsToASCII($charset, $fieldStr);
 		
 		// Get the first char
 		return substr($fieldStr, 0, 1);
+		} else {
+			return " ";
+		}
 	}
 	
 	/**
