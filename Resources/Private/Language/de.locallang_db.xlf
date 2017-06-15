@@ -1,233 +1,300 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="de" datatype="plaintext" original="messages" date="2014-03-18T13:08:22Z" product-name="nn_address">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2017-06-15T08:00:22Z" product-name="nn_address">
 		<header/>
 		<body>
-		
 			<trans-unit id="tx_nnaddress_flexForm_sheet_general">
+				<source>General</source>
 				<target>Allgemein</target>
 			</trans-unit>
 			<trans-unit id="tx_nnaddress_flexForm_enablesearch">
+				<source>Enable Search (Warning: Disables caching of this Ext.)</source>
 				<target>Suche aktivieren (Warnung: Deaktiviert den Cache dieser Ext.)</target>
 			</trans-unit>
 			<trans-unit id="tx_nnaddress_flexForm_orderby">
+				<source>Order by</source>
 				<target>Sortieren nach</target>
 			</trans-unit>
 			<trans-unit id="tx_nnaddress_flexForm_order">
+				<source>Order</source>
 				<target>Reihenfolge</target>
 			</trans-unit>
 			<trans-unit id="tx_nnaddress_flexForm_order_asc">
+				<source>Ascending</source>
 				<target>Aufsteigend</target>
 			</trans-unit>
 			<trans-unit id="tx_nnaddress_flexForm_order_desc">
+				<source>Descending</source>
 				<target>Absteigend</target>
 			</trans-unit>
 			<trans-unit id="tx_nnaddress_flexForm_groups">
+				<source>Groups</source>
 				<target>Gruppen</target>
 			</trans-unit>
 			<trans-unit id="tx_nnaddress_flexForm_description">
+				<source>Description</source>
 				<target>Beschreibung</target>
 			</trans-unit>
 			<trans-unit id="tx_nnaddress_flexForm_associated">
 				<source>Associated Persons</source>
+				<target>Verbundene Personen</target>
 			</trans-unit>
 			<trans-unit id="tx_nnaddress_flexForm_template">
 				<source>Template</source>
+				<target>Template</target>
 			</trans-unit>
 			<trans-unit id="tx_nnaddress_flexForm_startingpoint">
+				<source>starting point</source>
 				<target>Ausgangspunkt</target>
 			</trans-unit>
-			<trans-unit id="tx_nnaddress_flexForm_templateLayout">
-				<target>Template Layout</target>
-			</trans-unit>
-			<trans-unit id="tx_nnaddress_flexForm_descriptions">
-				<target>Ergänzende Beschreibung (zeilenweise pro Person)</target>
-			</trans-unit>
 			<trans-unit id="tx_nnaddress_flexForm_categories">
+				<source>Categories</source>
 				<target>Kategorien</target>
 			</trans-unit>
 			<trans-unit id="tx_nnaddress_flexForm_category_conjunction">
+				<source>category modus</source>
 				<target>Kategoriemodus</target>
 			</trans-unit>
 			<trans-unit id="tx_nnaddress_flexForm_category_conjunction.all">
+				<source>Don't care, show all</source>
 				<target>Kategorien nicht berücksichtigen</target>
 			</trans-unit>
 			<trans-unit id="tx_nnaddress_flexForm_category_conjunction.or">
+				<source>Show items with selected categories (OR)</source>
 				<target>Adressen mit einer ausgewählten Kategorie (Oder)</target>
 			</trans-unit>
 			<trans-unit id="tx_nnaddress_flexForm_category_conjunction.and">
+				<source>Show items with selected categories (AND)</source>
 				<target>Adressen mit allen ausgewählten Kategorien (Und)</target>
 			</trans-unit>
 			<trans-unit id="tx_nnaddress_flexForm_category_conjunction.notor">
+				<source>Do NOT show items with selected categories (AND)</source>
 				<target>Adressen mit einer ausgewählten Kategorie NICHT zeigen</target>
 			</trans-unit>
 			<trans-unit id="tx_nnaddress_flexForm_category_conjunction.notand">
+				<source>Do NOT show items with selected categories (OR)</source>
 				<target>Adressen mit allen ausgewählten Kategorien NICHT zeigen</target>
 			</trans-unit>
-			<trans-unit id="tx_nnaddress_flexForm_description">
-				<source>Description</source>
-			</trans-unit>
-			<trans-unit id="tx_nnaddress_flexForm_associated">
-				<source>Associated Persons</source>
-			</trans-unit>
 			<trans-unit id="tx_nnaddress_domain_model_person">
+				<source>Person</source>
 				<target>Person</target>
 			</trans-unit>
 			<trans-unit id="tx_nnaddress_domain_model_person.assignment">
+				<source>Assignment</source>
 				<target>Zuordnung</target>
 			</trans-unit>
 			<trans-unit id="tx_nnaddress_domain_model_person.advanced">
+				<source>Advanced</source>
 				<target>Erweitert</target>
 			</trans-unit>
 			<trans-unit id="tx_nnaddress_domain_model_person.gender">
+				<source>Gender</source>
 				<target>Anrede</target>
 			</trans-unit>
 			<trans-unit id="tx_nnaddress_domain_model_person.title">
+				<source>Title</source>
 				<target>Titel</target>
 			</trans-unit>
 			<trans-unit id="tx_nnaddress_domain_model_person.first_name">
+				<source>First Name</source>
 				<target>Vorname</target>
 			</trans-unit>
 			<trans-unit id="tx_nnaddress_domain_model_person.second_first_name">
+				<source>Second First Name</source>
 				<target>Zweiter Vorname</target>
 			</trans-unit>
 			<trans-unit id="tx_nnaddress_domain_model_person.last_name">
+				<source>Last Name</source>
 				<target>Nachname</target>
 			</trans-unit>
 			<trans-unit id="tx_nnaddress_domain_model_person.organisation">
+				<source>Organisation</source>
 				<target>Organisation</target>
 			</trans-unit>
 			<trans-unit id="tx_nnaddress_domain_model_person.position">
+				<source>Position</source>
 				<target>Position</target>
 			</trans-unit>
 			<trans-unit id="tx_nnaddress_domain_model_person.birthday">
+				<source>Birthday</source>
 				<target>Geburtstag</target>
 			</trans-unit>
 			<trans-unit id="tx_nnaddress_domain_model_person.image">
+				<source>Image</source>
 				<target>Bild</target>
 			</trans-unit>
 			<trans-unit id="tx_nnaddress_domain_model_person.street">
+				<source>Street</source>
 				<target>Straße</target>
 			</trans-unit>
 			<trans-unit id="tx_nnaddress_domain_model_person.number">
+				<source>Number</source>
 				<target>Nummer</target>
 			</trans-unit>
 			<trans-unit id="tx_nnaddress_domain_model_person.zip">
+				<source>ZIP</source>
 				<target>PLZ</target>
 			</trans-unit>
 			<trans-unit id="tx_nnaddress_domain_model_person.city">
+				<source>City</source>
 				<target>Stadt</target>
 			</trans-unit>
 			<trans-unit id="tx_nnaddress_domain_model_person.phone">
+				<source>Phone</source>
 				<target>Telefon</target>
 			</trans-unit>
 			<trans-unit id="tx_nnaddress_domain_model_person.fax">
+				<source>Fax</source>
 				<target>Fax</target>
 			</trans-unit>
 			<trans-unit id="tx_nnaddress_domain_model_person.email">
+				<source>eMail</source>
 				<target>email</target>
 			</trans-unit>
 			<trans-unit id="tx_nnaddress_domain_model_person.website">
+				<source>Website</source>
 				<target>Webseite</target>
 			</trans-unit>
 			<trans-unit id="tx_nnaddress_domain_model_person.notes">
+				<source>Notes</source>
 				<target>Notizen</target>
 			</trans-unit>
 			<trans-unit id="tx_nnaddress_domain_model_person.address">
+				<source>Address</source>
 				<target>Adresse</target>
 			</trans-unit>
 			<trans-unit id="tx_nnaddress_domain_model_person.addresses">
+				<source>Addresses</source>
 				<target>Adressen</target>
 			</trans-unit>
 			<trans-unit id="tx_nnaddress_domain_model_person.phones">
+				<source>Phonenumbers</source>
 				<target>Telefonnummern</target>
 			</trans-unit>
 			<trans-unit id="tx_nnaddress_domain_model_person.mails">
+				<source>E-Mails</source>
 				<target>E-Mails</target>
 			</trans-unit>
 			<trans-unit id="tx_nnaddress_domain_model_person.groups">
+				<source>Groups</source>
 				<target>Gruppen</target>
 			</trans-unit>
 			<trans-unit id="tx_nnaddress_domain_model_person.categories">
+				<source>Categories</source>
 				<target>Kategorien</target>
 			</trans-unit>
-
 			<trans-unit id="tx_nnaddress_domain_model_address">
+				<source>Address</source>
 				<target>Address</target>
 			</trans-unit>
 			<trans-unit id="tx_nnaddress_domain_model_address.type">
+				<source>Type</source>
 				<target>Typ</target>
 			</trans-unit>
 			<trans-unit id="tx_nnaddress_domain_model_address.street">
+				<source>Street</source>
 				<target>Strasse</target>
 			</trans-unit>
 			<trans-unit id="tx_nnaddress_domain_model_address.street_nr">
+				<source>Street Nr</source>
 				<target>Hausnr.</target>
 			</trans-unit>
 			<trans-unit id="tx_nnaddress_domain_model_address.building">
+				<source>Building</source>
 				<target><![CDATA[Gebäude]]></target>
 			</trans-unit>
 			<trans-unit id="tx_nnaddress_domain_model_address.room">
+				<source>Room</source>
 				<target>Raum</target>
 			</trans-unit>
 			<trans-unit id="tx_nnaddress_domain_model_address.zip">
+				<source>Zip</source>
 				<target>PLZ</target>
 			</trans-unit>
 			<trans-unit id="tx_nnaddress_domain_model_address.city">
+				<source>City</source>
 				<target>Stadt</target>
 			</trans-unit>
 			<trans-unit id="tx_nnaddress_domain_model_address.country">
+				<source>Country</source>
 				<target>Land</target>
 			</trans-unit>
 			<trans-unit id="tx_nnaddress_domain_model_address.region">
+				<source>Region</source>
 				<target>Region</target>
 			</trans-unit>
 			<trans-unit id="tx_nnaddress_domain_model_address.email">
+				<source>Email</source>
 				<target>E-Mail</target>
 			</trans-unit>
 			<trans-unit id="tx_nnaddress_domain_model_address.website">
+				<source>Website</source>
 				<target>Webseite</target>
 			</trans-unit>
-
 			<trans-unit id="tx_nnaddress_domain_model_phone">
+				<source>Phone</source>
 				<target>Telefonnummer</target>
 			</trans-unit>
 			<trans-unit id="tx_nnaddress_domain_model_phone.type">
+				<source>Type</source>
 				<target>Typ</target>
 			</trans-unit>
 			<trans-unit id="tx_nnaddress_domain_model_phone.number">
+				<source>Number</source>
 				<target>Nummer</target>
 			</trans-unit>
-			
 			<trans-unit id="tx_nnaddress_domain_model_mail">
+				<source>E-Mail</source>
 				<target>E-Mail</target>
 			</trans-unit>
 			<trans-unit id="tx_nnaddress_domain_model_mail.type">
+				<source>Type</source>
 				<target>Typ</target>
 			</trans-unit>
 			<trans-unit id="tx_nnaddress_domain_model_mail.email">
+				<source>E-Mail</source>
 				<target>E-Mail</target>
 			</trans-unit>
-
 			<trans-unit id="tx_nnaddress_domain_model_group">
+				<source>Group</source>
 				<target>Gruppe</target>
 			</trans-unit>
 			<trans-unit id="tx_nnaddress_domain_model_group.title">
+				<source>Title</source>
 				<target>Titel</target>
 			</trans-unit>
 			<trans-unit id="tx_nnaddress_domain_model_group.description">
+				<source>Description</source>
 				<target>Beschreibung</target>
 			</trans-unit>
 			<trans-unit id="tx_nnaddress_domain_model_group.groups">
 				<source>Parent Group</source>
+				<target></target>
 			</trans-unit>
-			<trans-unit id="extmng.useFal" xml:space="preserve">
+			<trans-unit id="extmng.useFal">
 				<source>Use FAL relations</source>
+				<target>Benutze FAL Relationen</target>
 			</trans-unit>
-			<trans-unit id="extmng.useFal.both" xml:space="preserve">
+			<trans-unit id="extmng.useFal.both">
 				<source>Both</source>
+				<target>beides</target>
 			</trans-unit>
-
+			<trans-unit id="extmng.flexForm">
+				<source>Optional FlexForm directory to extend the person, phone, address and mail model</source>
+				<target>Optionales FlexForm Verzeichnis um die Datenmodelle Person, Phone, Address und Mail zu erweitern</target>
+			</trans-unit>
+			<trans-unit id="extmng.flexFormPlugin">
+				<source>Optional FlexForm directory for plugins</source>
+				<target>Optionales FlexForm Verzeichnis um Plugineingabe zu erweitern</target>
+			</trans-unit>
+			<trans-unit id="tx_nnaddress_flexForm_templateLayout">
+				<source>Template layout</source>
+				<target>Template Layout</target>
+			</trans-unit>
+			<trans-unit id="tx_nnaddress_flexForm_descriptions">
+				<source>Additional description  (one line per person)</source>
+				<target>Ergänzende Beschreibung (zeilenweise pro Person)</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>
