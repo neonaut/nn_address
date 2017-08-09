@@ -207,6 +207,7 @@ $tx_nnaddress_domain_model_person = [
                 'type' => 'input',
                 'size' => 7,
                 'eval' => 'date',
+                'default' => 0,
                 // ToDo 8 LTS only
                 // 'renderType' => 'inputDateTime',
 
