@@ -57,7 +57,7 @@ class GetSinglePersonViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstrac
 	 * @return mixed|NULL
 	 */
 	public function render($uid) {
-		return $this->personRepository->findSingleByViewHelper($uid);
+		return $this->personRepository->findByUid($uid);
 	}
 
 }
