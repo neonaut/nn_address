@@ -108,8 +108,8 @@ class BasicController extends \NN\NnAddress\Mvc\Controller\ActionController {
 	/**
 	 * Find all persons, optional by selected groups
 	 *
-	 * @return \TYPO3\CMS\Extbase\Persistence\Generic\QueryResult
-	 */
+	 * @return bool|\TYPO3\CMS\Extbase\Persistence\QueryResultInterface
+     */
 	protected function getPersons() {
 		$sword  = $this->getRequestArgument('sword', $this->settings['swordValidationExpr']);
 		$groups = $this->getRequestArgument('group', '/^([0-9]{1,})$/', (($this->settings['groupSearchTypeAnd'] == 1) ? TRUE : FALSE));
@@ -154,7 +154,7 @@ class BasicController extends \NN\NnAddress\Mvc\Controller\ActionController {
 	 * @return void
 	 */
 	protected function setSearchPresets() {
-		if ( $this->settings['enableSearch'] == 1 ) {
+		if ( $this->settings['enableSearch'] === 1 ) {
 			$groupId = $this->getRequestArgument('group', '/^([0-9]{1,})$/', (($this->settings['groupSearchTypeAnd'] == 1) ? TRUE : FALSE));
 			
 			$this->view->assign('sword', $this->getRequestArgument('sword', $this->settings['swordValidationExpr']));

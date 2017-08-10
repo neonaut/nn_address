@@ -2,7 +2,9 @@
 
 namespace NN\NnAddress\Controller;
 
+use NN\NnAddress\Domain\Model\Person;
 use \NN\NnAddress\Utility\AbcListActionHelper as AbcListActionHelper;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /***************************************************************
  *  Copyright notice
@@ -125,11 +127,11 @@ class PersonController extends \NN\NnAddress\Mvc\Controller\BasicController
     /**
      * action show
      *
-     * @param \NN\NnAddress\Domain\Model\Person $person
+     * @param Person $person
      *
      * @return void
      */
-    public function showAction(\NN\NnAddress\Domain\Model\Person $person)
+    public function showAction(Person $person)
     {
         $this->view->assign('person', $person);
     }
@@ -142,8 +144,8 @@ class PersonController extends \NN\NnAddress\Mvc\Controller\BasicController
      */
     public function singleAction()
     {
-        $persons = array();
-        $personList = \TYPO3\CMS\Core\Utility\GeneralUtility::intExplode(",",$this->settings['persons']);
+        $persons = [];
+        $personList = GeneralUtility::intExplode(',',$this->settings['persons']);
 
         foreach ($personList as $personId) {
             $persons[] = $this->personRepository->findByUid($personId);

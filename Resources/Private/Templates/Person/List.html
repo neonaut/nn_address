@@ -1,7 +1,6 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
 	  data-namespace-typo3-fluid="true">
 
-
 <f:layout name="List"/>
 <f:section name="main">
 
@@ -51,10 +50,14 @@
 						<f:comment>
 							Example on using the NN Viewhelper to get a specific entry by type field.
 							In this case get only the WORK Phone number.
+							NOT WOKING YET!!
+							<!--
+							f:alias map="{phone: '{person.phones -> nn:iterator.getByProperty(property:\'type\',value:1)}'}">
+								{phone.number}
+							&lt;/f:alias&gt;
+							-->
 						</f:comment>
-						<f:alias map="{phone: '{person.phones -> nn:iterator.getByProperty(property:\'type\',value:1)}'}">
-							{phone.number}
-						</f:alias>
+
 					</td>
 				</tr>
 			</f:for>

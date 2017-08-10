@@ -1,6 +1,7 @@
 <?php
 namespace NN\NnAddress\Domain\Model\Dto;
-use NN\NnAddress\Domain\Model\DemandInterface;
+
+use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 
 /***************************************************************
  *
@@ -27,7 +28,7 @@ use NN\NnAddress\Domain\Model\DemandInterface;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
-class PersonsDemand extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
+class PersonsDemand extends AbstractEntity {
 
 	/** @var integer */
 	protected $storagePage;
