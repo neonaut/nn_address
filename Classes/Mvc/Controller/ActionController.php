@@ -61,7 +61,7 @@ class ActionController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 		parent::initializeAction();
 		
 		// Renders the settings like TypoScript if enabled
-		if ( (sizeof($this->settings) > 0) && ($this->settings['enableStdWrap'] == 1) ) {
+		if ( (count($this->settings) > 0) && ($this->settings['enableStdWrap'] == 1) ) {
 			$typoScriptService = $this->objectManager->get('TYPO3\\CMS\\Extbase\\Service\\TypoScriptService');
 			$settingsAsTypoScriptArray = $typoScriptService->convertPlainArrayToTypoScriptArray($this->settings);
 			

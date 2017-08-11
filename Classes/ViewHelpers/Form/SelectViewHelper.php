@@ -91,7 +91,7 @@ class SelectViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Form\SelectViewHelpe
 			$options[$key] = $value;
 			
 			// Added by NN Address
-			if ( sizeof($childOptions) > 0 ) $options = $options + $childOptions;
+			if ( count($childOptions) > 0 ) $options = $options + $childOptions;
 		}
 		if ($this->arguments['sortByOptionLabel']) {
 			asort($options, SORT_LOCALE_STRING);

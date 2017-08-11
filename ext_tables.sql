@@ -257,7 +257,7 @@ CREATE TABLE tx_nnaddress_domain_model_group (
 #
 CREATE TABLE tx_nnaddress_domain_model_address (
 
-	person  int(11) unsigned DEFAULT '0' NOT NULL,
+	person  int(11) unsigned DEFAULT '0' NOT NULL
 
 );
 
@@ -266,7 +266,7 @@ CREATE TABLE tx_nnaddress_domain_model_address (
 #
 CREATE TABLE tx_nnaddress_domain_model_phone (
 
-	person  int(11) unsigned DEFAULT '0' NOT NULL,
+	person  int(11) unsigned DEFAULT '0' NOT NULL
 
 );
 
@@ -275,7 +275,7 @@ CREATE TABLE tx_nnaddress_domain_model_phone (
 #
 CREATE TABLE tx_nnaddress_domain_model_mail (
 
-	person  int(11) unsigned DEFAULT '0' NOT NULL,
+	person  int(11) unsigned DEFAULT '0' NOT NULL
 
 );
 
@@ -284,7 +284,7 @@ CREATE TABLE tx_nnaddress_domain_model_mail (
 #
 CREATE TABLE sys_category (
 
-	person  int(11) unsigned DEFAULT '0' NOT NULL,
+	person  int(11) unsigned DEFAULT '0' NOT NULL
 
 );
 

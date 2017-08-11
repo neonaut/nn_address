@@ -164,11 +164,11 @@ class BasicController extends \NN\NnAddress\Mvc\Controller\ActionController {
 				$this->view->assign('selectedGroup', $groupId);
 			
 				// Build the Hierachy Object for sub selected groups
-				$p = $this->groupRepository->findOneByUid(intval($groupId));
+				$p = $this->groupRepository->findOneByUid((int)$groupId);
 				$p = ( is_object($p) ) ? $p->getParentGroups()->current() : NULL;
 				$options = ( is_object($p) ) ? $p->getChildGroups() : $this->groupRepository->findAll();
 				$idList[]        = array(
-					'model'   => $this->groupRepository->findOneByUid(intval($groupId)),
+					'model'   => $this->groupRepository->findOneByUid((int)$groupId),
 					'options' => $options
 				);
 				
@@ -188,7 +188,7 @@ class BasicController extends \NN\NnAddress\Mvc\Controller\ActionController {
 	 */
 	private function getGroupIdHierachy($groupId, &$idList) {
 		if ( empty($groupId) ) return NULL;
-		$curGroupObj = $this->groupRepository->findOneByUid(intval($groupId));
+		$curGroupObj = $this->groupRepository->findOneByUid((int)$groupId);
 		$parentGroup = $curGroupObj->getParentGroups()->current();
 		
 		if ( is_object($parentGroup) ) {
@@ -215,7 +215,7 @@ class BasicController extends \NN\NnAddress\Mvc\Controller\ActionController {
 	 */
 	private function getGroupIdList($groupId, &$idList) {
 		if ( $groupId <= 0 ) return NULL;
-		$curGroupObj = $this->groupRepository->findOneByUid(intval($groupId));
+		$curGroupObj = $this->groupRepository->findOneByUid((int)$groupId);
 		$childGroups = $curGroupObj->getChildGroups();
 		
 		if ( $childGroups->count() > 0 ) {

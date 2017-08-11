@@ -90,14 +90,14 @@ class PaginateController extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetCont
 					$curPos   = 0;
 					
 					foreach ( $this->objects as $char => $entries ) {
-						if ( sizeof($entries) > 0 ) {
+						if ( count($entries) > 0 ) {
 							$modifiedObjects[$char] = array();
 							
 							foreach ( $entries as $entry ) {
 								if ( $curPos > $endPos ) break;
 								
 								if ( ($curPos >= $startPos) && ($curPos <= $endPos) ) {
-									array_push($modifiedObjects[$char], $entry);
+									$modifiedObjects[$char][] = $entry;
 								}
 								
 								$curPos++;

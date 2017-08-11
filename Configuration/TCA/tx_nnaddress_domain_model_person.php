@@ -9,7 +9,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 $_extConfig = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['nn_address']);
 
 $tx_nnaddress_domain_model_person = [
-    'ctrl' => array(
+    'ctrl' => [
         'title' => 'LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person',
         'label' => 'last_name',
         'label_alt' => 'first_name,organisation',
@@ -24,30 +24,30 @@ $tx_nnaddress_domain_model_person = [
         'transOrigPointerField' => 'l10n_parent',
         'transOrigDiffSourceField' => 'l10n_diffsource',
         'delete' => 'deleted',
-        'enablecolumns' => array(
+        'enablecolumns' => [
             'disabled' => 'hidden',
             'starttime' => 'starttime',
             'endtime' => 'endtime',
-        ),
+        ],
         'searchFields' => 'gender,title,first_name,second_first_name,last_name,organisation,position,birthday,street,number,zip,city,phone,fax,email,website,notes',
         'iconfile' => 'EXT:nn_address/Resources/Public/Icons/tx_nnaddress_domain_model_person.gif'
-    ),
-    'interface' => array(
+    ],
+    'interface' => [
         'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, gender, title, first_name, second_first_name, last_name, organisation, position, image, fal_image, street, number, zip, city, phone, fax, email, website, notes, addresses, phones, mails, groups, categories, flexform',
-    ),
-    'types' => array(
-        '1' => array(
-            'showitem' => 'l10n_parent, l10n_diffsource, hidden, gender, title, first_name, second_first_name, last_name, organisation, position, birthday, fal_image, website, notes,
+    ],
+    'types' => [
+        '1' => [
+            'showitem' => 'l10n_parent, l10n_diffsource, hidden,--palette--;;1 gender, title, first_name, second_first_name, last_name, organisation, position, birthday, fal_image, website, notes,
 									--div--;LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person.addresses, addresses, 
 									--div--;LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person.phones, phones,
 									--div--;LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person.mails, mails, 
 									--div--;LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person.assignment, groups, categories,
 									--div--;LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person.advanced, flexform,
-									--div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,starttime, endtime'
-        ),
-    ),
-    'columns' => array(
-        'sys_language_uid' => array(
+									--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.access,starttime, endtime'
+        ],
+    ],
+    'columns' => [
+        'sys_language_uid' => [
             'exclude' => 1,
             'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.language',
             'config' => [
@@ -63,147 +63,147 @@ $tx_nnaddress_domain_model_person = [
                 ],
                 'default' => 0,
             ]
-        ),
-        'l10n_parent' => array(
+        ],
+        'l10n_parent' => [
             'displayCond' => 'FIELD:sys_language_uid:>:0',
             'exclude' => 1,
             'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.l18n_parent',
-            'config' => array(
+            'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
-                'items' => array(
-                    array('', 0),
-                ),
+                'items' => [
+                    ['', 0],
+                ],
                 'foreign_table' => 'tx_nnaddress_domain_model_person',
                 'foreign_table_where' => 'AND tx_nnaddress_domain_model_person.pid=###CURRENT_PID### AND tx_nnaddress_domain_model_person.sys_language_uid IN (-1,0)',
                 'default' => 0,
-            ),
-        ),
-        'l10n_diffsource' => array(
-            'config' => array(
+            ],
+        ],
+        'l10n_diffsource' => [
+            'config' => [
                 'type' => 'passthrough',
-            ),
-        ),
-        't3ver_label' => array(
+            ],
+        ],
+        't3ver_label' => [
             'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.versionLabel',
-            'config' => array(
+            'config' => [
                 'type' => 'input',
                 'size' => 30,
                 'max' => 255,
-            )
-        ),
-        'hidden' => array(
+            ]
+        ],
+        'hidden' => [
             'exclude' => 1,
             'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.hidden',
-            'config' => array(
+            'config' => [
                 'type' => 'check',
-            ),
-        ),
-        'starttime' => array(
+            ],
+        ],
+        'starttime' => [
             'exclude' => 1,
             'l10n_mode' => 'mergeIfNotBlank',
             'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.starttime',
-            'config' => array(
+            'config' => [
                 'type' => 'input',
                 'size' => 13,
                 'eval' => 'datetime',
                 // ToDo 8 LTS only
                 // // 'renderType' => 'inputDateTime',
                 'default' => 0
-            ),
-        ),
-        'endtime' => array(
+            ],
+        ],
+        'endtime' => [
             'exclude' => 1,
             'l10n_mode' => 'mergeIfNotBlank',
             'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.endtime',
-            'config' => array(
+            'config' => [
                 'type' => 'input',
                 'size' => 13,
                 'eval' => 'datetime',
                 // ToDo 8 LTS only
                 // 'renderType' => 'inputDateTime',
                 'default' => 0
-            ),
-        ),
-        'gender' => array(
+            ],
+        ],
+        'gender' => [
             'exclude' => 1,
             'label' => 'LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person.gender',
-            'config' => array(
+            'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
-                'items' => array(
-                    array(
+                'items' => [
+                    [
                         'LLL:EXT:nn_address/Resources/Private/Language/locallang_csh_tx_nnaddress_domain_model_person.xlf:gender.0',
                         0
-                    ),
-                    array(
+                    ],
+                    [
                         'LLL:EXT:nn_address/Resources/Private/Language/locallang_csh_tx_nnaddress_domain_model_person.xlf:gender.1',
                         1
-                    ),
-                ),
+                    ],
+                ],
                 'size' => 1,
                 'maxitems' => 1,
                 'eval' => '',
-            ),
-        ),
-        'title' => array(
+            ],
+        ],
+        'title' => [
             'exclude' => 1,
             'label' => 'LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person.title',
-            'config' => array(
+            'config' => [
                 'type' => 'input',
                 'size' => 30,
                 'eval' => 'trim'
-            ),
-        ),
-        'first_name' => array(
+            ],
+        ],
+        'first_name' => [
             'exclude' => 1,
             'label' => 'LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person.first_name',
-            'config' => array(
+            'config' => [
                 'type' => 'input',
                 'size' => 30,
                 'eval' => 'trim'
-            ),
-        ),
-        'second_first_name' => array(
+            ],
+        ],
+        'second_first_name' => [
             'exclude' => 1,
             'label' => 'LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person.second_first_name',
-            'config' => array(
+            'config' => [
                 'type' => 'input',
                 'size' => 30,
                 'eval' => 'trim'
-            ),
-        ),
-        'last_name' => array(
+            ],
+        ],
+        'last_name' => [
             'exclude' => 1,
             'label' => 'LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person.last_name',
-            'config' => array(
+            'config' => [
                 'type' => 'input',
                 'size' => 30,
                 'eval' => 'trim'
-            ),
-        ),
-        'organisation' => array(
+            ],
+        ],
+        'organisation' => [
             'exclude' => 1,
             'label' => 'LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person.organisation',
-            'config' => array(
+            'config' => [
                 'type' => 'input',
                 'size' => 30,
                 'eval' => 'trim'
-            ),
-        ),
-        'position' => array(
+            ],
+        ],
+        'position' => [
             'exclude' => 1,
             'label' => 'LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person.position',
-            'config' => array(
+            'config' => [
                 'type' => 'input',
                 'size' => 30,
                 'eval' => 'trim'
-            ),
-        ),
-        'birthday' => array(
+            ],
+        ],
+        'birthday' => [
             'exclude' => 1,
             'label' => 'LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person.birthday',
-            'config' => array(
+            'config' => [
                 'type' => 'input',
                 'size' => 7,
                 'eval' => 'date',
@@ -211,12 +211,12 @@ $tx_nnaddress_domain_model_person = [
                 // ToDo 8 LTS only
                 // 'renderType' => 'inputDateTime',
 
-            ),
-        ),
-        'image' => array(
+            ],
+        ],
+        'image' => [
             'exclude' => 1,
             'label' => 'LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person.image',
-            'config' => array(
+            'config' => [
                 'type' => 'group',
                 'internal_type' => 'file',
                 'uploadfolder' => 'uploads/tx_nnaddress',
@@ -225,158 +225,158 @@ $tx_nnaddress_domain_model_person = [
                 'minitems' => '0',
                 'allowed' => $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext'],
                 'disallowed' => '',
-            ),
-        ),
-        'fal_image' => array(
+            ],
+        ],
+        'fal_image' => [
             'exclude' => 1,
             'label' => 'LLL:EXT:lang/locallang_general.xml:LGL.image',
-            'config' => ExtensionManagementUtility::getFileFieldTCAConfig('image', array(
+            'config' => ExtensionManagementUtility::getFileFieldTCAConfig('image', [
                 'maxitems' => 5,
-            ), $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext'])
-        ),
-        'street' => array(
+            ], $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext'])
+        ],
+        'street' => [
             'exclude' => 1,
             'label' => 'LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person.street',
-            'config' => array(
+            'config' => [
                 'type' => 'input',
                 'size' => 30,
                 'eval' => 'trim'
-            ),
-        ),
-        'number' => array(
+            ],
+        ],
+        'number' => [
             'exclude' => 1,
             'label' => 'LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person.number',
-            'config' => array(
+            'config' => [
                 'type' => 'input',
                 'size' => 7,
                 'eval' => 'trim'
-            ),
-        ),
-        'zip' => array(
+            ],
+        ],
+        'zip' => [
             'exclude' => 1,
             'label' => 'LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person.zip',
-            'config' => array(
+            'config' => [
                 'type' => 'input',
                 'size' => 7,
                 'eval' => 'trim'
-            ),
-        ),
-        'city' => array(
+            ],
+        ],
+        'city' => [
             'exclude' => 1,
             'label' => 'LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person.city',
-            'config' => array(
+            'config' => [
                 'type' => 'input',
                 'size' => 30,
                 'eval' => 'trim'
-            ),
-        ),
-        'phone' => array(
+            ],
+        ],
+        'phone' => [
             'exclude' => 1,
             'label' => 'LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person.phone',
-            'config' => array(
+            'config' => [
                 'type' => 'input',
                 'size' => 30,
                 'eval' => 'trim'
-            ),
-        ),
-        'fax' => array(
+            ],
+        ],
+        'fax' => [
             'exclude' => 1,
             'label' => 'LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person.fax',
-            'config' => array(
+            'config' => [
                 'type' => 'input',
                 'size' => 30,
                 'eval' => 'trim'
-            ),
-        ),
-        'email' => array(
+            ],
+        ],
+        'email' => [
             'exclude' => 1,
             'label' => 'LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person.email',
-            'config' => array(
+            'config' => [
                 'type' => 'input',
                 'size' => 30,
                 'eval' => 'trim'
-            ),
-        ),
-        'website' => array(
+            ],
+        ],
+        'website' => [
             'exclude' => 1,
             'label' => 'LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person.website',
-            'config' => array(
+            'config' => [
                 'type' => 'input',
                 'size' => 30,
                 'eval' => 'trim'
-            ),
-        ),
-        'notes' => array(
+            ],
+        ],
+        'notes' => [
             'exclude' => 1,
             'label' => 'LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person.notes',
-            'config' => array(
+            'config' => [
                 'type' => 'text',
                 'cols' => 40,
                 'rows' => 15,
                 'eval' => 'trim'
-            ),
-        ),
-        'addresses' => array(
+            ],
+        ],
+        'addresses' => [
             'exclude' => 1,
             'label' => 'LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person.addresses',
-            'config' => array(
+            'config' => [
                 'type' => 'inline',
                 'foreign_table' => 'tx_nnaddress_domain_model_address',
                 'foreign_field' => 'person',
                 'foreign_sortby' => 'sorting',
                 'maxitems' => 9999,
-                'appearance' => array(
+                'appearance' => [
                     'collapseAll' => 1,
                     'levelLinksPosition' => 'top',
                     'showSynchronizationLink' => 1,
                     'showPossibleLocalizationRecords' => 1,
                     'showAllLocalizationLink' => 1,
                     'useSortable' => 1
-                ),
-            ),
-        ),
-        'phones' => array(
+                ],
+            ],
+        ],
+        'phones' => [
             'exclude' => 1,
             'label' => 'LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person.phones',
-            'config' => array(
+            'config' => [
                 'type' => 'inline',
                 'foreign_table' => 'tx_nnaddress_domain_model_phone',
                 'foreign_field' => 'person',
                 'foreign_sortby' => 'sorting',
                 'maxitems' => 9999,
-                'appearance' => array(
+                'appearance' => [
                     'collapseAll' => 1,
                     'levelLinksPosition' => 'top',
                     'showSynchronizationLink' => 1,
                     'showPossibleLocalizationRecords' => 1,
                     'showAllLocalizationLink' => 1,
                     'useSortable' => 1
-                ),
-            ),
-        ),
-        'mails' => array(
+                ],
+            ],
+        ],
+        'mails' => [
             'exclude' => 1,
             'label' => 'LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person.mails',
-            'config' => array(
+            'config' => [
                 'type' => 'inline',
                 'foreign_table' => 'tx_nnaddress_domain_model_mail',
                 'foreign_field' => 'person',
                 'foreign_sortby' => 'sorting',
                 'maxitems' => 9999,
-                'appearance' => array(
+                'appearance' => [
                     'collapseAll' => 1,
                     'levelLinksPosition' => 'top',
                     'showSynchronizationLink' => 1,
                     'showPossibleLocalizationRecords' => 1,
                     'showAllLocalizationLink' => 1,
                     'useSortable' => 1
-                ),
-            ),
-        ),
-        'groups' => array(
+                ],
+            ],
+        ],
+        'groups' => [
             'exclude' => 1,
             'label' => 'LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person.groups',
-            'config' => array(
+            'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
                 'foreign_table' => 'tx_nnaddress_domain_model_group',
@@ -386,9 +386,9 @@ $tx_nnaddress_domain_model_person = [
                 'autoSizeMax' => 30,
                 'maxitems' => 9999,
                 'multiple' => 0,
-            ),
-        )
-    )
+            ],
+        ]
+    ]
 ];
 
 
@@ -397,12 +397,12 @@ if (file_exists(GeneralUtility::getFileAbsFileName($flexFormFile))) {
     $tempFlexform = [
         'exclude' => 1,
         'label' => '',
-        'config' => array(
+        'config' => [
             'type' => 'flex',
-            'ds' => array(
+            'ds' => [
                 'default' => 'FILE:' . $flexFormFile,
-            ),
-        ),
+            ],
+        ],
     ];
     $tx_nnaddress_domain_model_person['columns']['flexform'] = $tempFlexform;
     unset($tempFlexform);

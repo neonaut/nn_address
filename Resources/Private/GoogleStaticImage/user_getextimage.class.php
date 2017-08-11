@@ -1,7 +1,7 @@
 <?php 
 
 class user_getextimage {
-	function main($content, $conf) {
+	public function main($content, $conf) {
 		// Parse with TypoScript
 		if ( isset($conf['url.']) ) {
 		    $conf['url'] = $this->cObj->cObjGetSingle($conf['url'], $conf['url.']);

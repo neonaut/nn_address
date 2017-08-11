@@ -58,7 +58,7 @@ class GroupRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	public function findOneByUid($uid) {
 		$query = $this->createQuery();
 		$query->setLimit(1);
-		$query->matching($query->equals('uid', intval($uid)));
+		$query->matching($query->equals('uid', (int)$uid));
 		
 		$rootGroups = $query->execute();
 		if ( $rootGroups->count() > 0 ) {
