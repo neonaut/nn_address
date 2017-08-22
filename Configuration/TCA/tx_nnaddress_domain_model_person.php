@@ -6,6 +6,12 @@ if (!defined('TYPO3_MODE')) {
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::makeCategorizable(
+    'nn_address',
+    'tx_nnaddress_domain_model_person'
+);
+
+
 $_extConfig = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['nn_address']);
 
 $tx_nnaddress_domain_model_person = [
