@@ -399,7 +399,10 @@ $tx_nnaddress_domain_model_person = [
 
 
 $flexFormFile = $_extConfig['flexForm'] . 'Person.xml';
-if (file_exists(GeneralUtility::getFileAbsFileName($flexFormFile))) {
+
+if (!file_exists(GeneralUtility::getFileAbsFileName($flexFormFile))) {
+    $flexFormFile = 'EXT:nn_address/Configuration/FlexForms/Model/' . 'Person.xml';
+}
     $tempFlexform = [
         'exclude' => 1,
         'label' => '',
@@ -412,7 +415,6 @@ if (file_exists(GeneralUtility::getFileAbsFileName($flexFormFile))) {
     ];
     $tx_nnaddress_domain_model_person['columns']['flexform'] = $tempFlexform;
     unset($tempFlexform);
-}
 
 if ($_extConfig['useIrre'] == 0) {
     $tx_nnaddress_domain_model_person['types']['1']['showitem'] = 'l10n_parent, l10n_diffsource, hidden, gender, title, first_name, second_first_name, last_name, organisation, position, birthday, street, number, zip, city, phone, fax, email, fal_image, website, notes,--div--;LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person.assignment, groups, categories, 									--div--;LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person.advanced, flexform,--div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,starttime, endtime';
