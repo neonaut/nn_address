@@ -66,12 +66,15 @@ class PersonController extends \NN\NnAddress\Mvc\Controller\BasicController
         // Database ordering
         $this->setOrderings($this->personRepository, 'lastName');
 
+        $demand = $this->createDemandObject($this->settings);
+
+
         // Get all contacts
-        //$persons = $this->getPersons();
-        $persons = $this->getPersonsByDemand();
+        $persons = $this->personRepository->findDemanded($demand);
 
         // Give it to fluid
         $this->view->assign('persons', $persons);
+        $this->view->assign('demand', $demand);
         $this->setSearchPresets();
     }
 
@@ -85,8 +88,12 @@ class PersonController extends \NN\NnAddress\Mvc\Controller\BasicController
         // Database ordering
         $this->setOrderings($this->personRepository, 'lastName');
 
+        $demand = $this->createDemandObject($this->settings);
+
+        // Get all contacts
+        $persons = $this->personRepository->findDemanded($demand);
+
         // Init basic variables
-        $persons = $this->getPersonsByDemand();
         $charset = AbcListActionHelper::getSystemCharset();
         $range = array();
         $personCount = 0;
@@ -121,6 +128,7 @@ class PersonController extends \NN\NnAddress\Mvc\Controller\BasicController
         $this->view->assign('range', $range);
         $this->view->assign('groupedPersons', $groupedPersons);
         $this->view->assign('personCount', $personCount);
+        $this->view->assign('demand', $demand);
         $this->setSearchPresets();
     }
 
